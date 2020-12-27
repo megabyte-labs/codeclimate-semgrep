@@ -1,0 +1,8 @@
+rules:
+- id: sentinel-definition
+  pattern: |
+    def _sentinel(...):
+        ...
+  message: test sentinel function definition
+  languages: [py]
+  severity: ERROR

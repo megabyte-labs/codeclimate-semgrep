@@ -1,0 +1,159 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "title": "Result",
+  "description": "A JSON Schema describing the Code Climate Engine output format",
+  "required": ["type", "check_name", "description", "categories", "location"],
+  "definitions": {
+    "content": {
+      "$id": "#/definitions/content",
+      "type": "object",
+      "description": "More information about the issue's check, including a description of the issue, how to fix it, and relevant links",
+      "properties": {
+        "body": {
+          "type": "string",
+          "description": "A Markdown document"
+        }
+      },
+      "required": ["body"]
+    },
+    "location": {
+      "$id": "#/definitions/location",
+      "type": "object",
+      "description": "A range of a source code file",
+      "properties": {
+        "path": {
+          "type": "string",
+          "description": "The file path relative to /code"
+        },
+        "lines": {
+          "type": "object",
+          "required": ["begin", "end"],
+          "properties": {
+            "begin": {
+              "type": "integer"
+            },
+            "end": {
+              "type": "integer"
+            }
+          }
+        },
+        "positions": {
+          "type": "object",
+          "required": ["begin", "end"],
+          "properties": {
+            "begin": { "$ref": "#/definitions/position" },
+            "end": { "$ref": "#/definitions/position" }
+          }
+        }
+      },
+      "oneOf": [
+        {
+          "required": ["lines"]
+        },
+        {
+          "required": ["positions"]
+        }
+      ],
+      "required": ["path"]
+    },
+    "position": {
+      "$id": "#/definitions/position",
+      "type": "object",
+      "required": ["line", "column"],
+      "properties": {
+        "line": {
+          "type": "integer"
+        },
+        "column": {
+          "type": "integer"
+        }
+      }
+    },
+    "trace": {
+      "$id": "#/definitions/trace",
+      "type": "object",
+      "description": "A data structure meant to represent ordered or unordered lists of source code locations",
+      "required": ["locations"],
+      "properties": {
+        "locations": {
+          "type": "array",
+          "items": { "$ref": "#/definitions/location" }
+        },
+        "stacktrace": {
+          "type": "boolean",
+          "description": "When true, this Trace object will be treated like an ordered stacktrace by the CLI and the Code Climate UI"
+        }
+      }
+    }
+  },
+  "properties": {
+    "type": {
+      "$id": "#/properties/type",
+      "type": "string",
+      "description": "Must always be 'issue'",
+      "enum": ["issue"],
+      "examples": ["issue"]
+    },
+    "check_name": {
+      "$id": "#/properties/check_name",
+      "type": "string",
+      "description": "A unique name representing the static analysis check that emitted this issue",
+      "examples": ["Bug Risk/Unused Variable"]
+    },
+    "description": {
+      "$id": "#/properties/description",
+      "type": "string",
+      "description": "A string explaining the issue that was detected",
+      "examples": ["Unused local variable `foo`"]
+    },
+    "content": { "$ref": "#/definitions/content" },
+    "categories": {
+      "$id": "#/properties/categories",
+      "type": "array",
+      "minItems": 1,
+      "description": "At least one category indicating the nature of the issue being reported",
+      "examples": [["Complexity"]],
+      "items": {
+        "type": "string",
+        "enum": [
+          "Bug Risk",
+          "Clarity",
+          "Compatibility",
+          "Complexity",
+          "Duplication",
+          "Performance",
+          "Security",
+          "Style"
+        ]
+      }
+    },
+    "location": { "$ref": "#/definitions/location" },
+    "trace": { "$ref": "#/definitions/trace" },
+    "remediation_points": {
+      "$id": "#/properties/remediation_points",
+      "type": "integer",
+      "description": "An integer indicating a rough estimate of how long it would take to resolve the reported issue",
+      "examples": [50000]
+    },
+    "severity": {
+      "$id": "#/properties/severity",
+      "type": "string",
+      "description": "A string describing the potential impact of the issue found",
+      "enum": ["info", "minor", "major", "critical", "blocker"],
+      "examples": ["info"]
+    },
+    "fingerprint": {
+      "$id": "#/properties/fingerprint",
+      "type": "string",
+      "description": "A unique, deterministic identifier for the specific issue being reported to allow a user to exclude it from future analyses",
+      "examples": ["abcd1234"]
+    },
+    "other_locations": {
+      "$id": "#/properties/other_locations",
+      "type": "array",
+      "description": "An optional array of Location objects",
+      "items": { "$ref": "#/definitions/location" }
+    }
+  }
+}

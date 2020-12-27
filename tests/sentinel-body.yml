@@ -1,0 +1,10 @@
+rules:
+- id: sentinel-body
+  patterns:
+    - pattern: "raise RuntimeError(\"Testing\")"
+    - pattern-inside: |
+        def _sentinel(...):
+            ...
+  message: test sentinel body
+  languages: [py]
+  severity: ERROR

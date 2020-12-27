@@ -1,0 +1,11 @@
+{
+  "name": "semgrep",
+  "description": "Semgrep is a lightweight, offline, open-source, static analysis tool.",
+  "maintainer": {
+    "name": "Gabriel Gironda",
+    "email": "gabriel@gironda.org"
+  },
+  "languages": ["*"],
+  "version": "2020.12.14",
+  "spec_version": "0.0.1"
+}
