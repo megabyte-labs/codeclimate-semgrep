@@ -59,6 +59,38 @@ tests/cc/test_output.py ......                                                  
 ============================================================================================== 16 passed in 3.15s ==============================================================================================
 ```
 
+## ➤ Requirements
+
+- **[Docker](https://gitlab.com/megabyte-labs/ansible-roles/docker)**
+- [CodeClimate CLI](https://github.com/codeclimate/codeclimate)
+
+### Optional Requirements
+
+- [DockerSlim](https://gitlab.com/megabyte-labs/ansible-roles/dockerslim) - Used for generating compact, secure images
+- [Google's Container structure test](https://github.com/GoogleContainerTools/container-structure-test) - For testing the Docker images
+
+
+### Building the Docker Container
+
+Run the below make command from the root of this repository to create a local fat docker image
+```shell
+make image
+```
+
+### Building a Slim Container
+
+Run the below make command from the root of this repository to create a local slim docker image
+```shell
+make slim
+```
+
+### Test
+
+Run the below command from the root of this repository to test the images created by this repository.
+```shell
+make test
+```
+
 ## Authors
 
 [Gabriel Gironda](mailto:gabriel@gironda.org)

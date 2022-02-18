@@ -1,0 +1,3 @@
+/usr/bin/pip3
+/usr/bin/ls
+/usr/local/bin/

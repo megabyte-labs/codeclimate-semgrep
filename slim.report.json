@@ -1,0 +1,264 @@
+{
+  "version": "1.0",
+  "engine": "linux|Transformer|1.37.3|97eb3c8c7f8c4e295a26c13882feb3f0539ab50f|2021-12-10_09:37:29AM",
+  "containerized": false,
+  "host_distro": {
+    "name": "Ubuntu",
+    "version": "20.04",
+    "display_name": "Ubuntu 20.04.3 LTS"
+  },
+  "type": "build",
+  "state": "done",
+  "target_reference": "codeclimate/codeclimate-semgrep:local-2022-02-18_14-50-14",
+  "system": {
+    "type": "Linux",
+    "release": "5.13.0-28-generic",
+    "distro": {
+      "name": "Ubuntu",
+      "version": "20.04",
+      "display_name": "Ubuntu 20.04.3 LTS"
+    }
+  },
+  "source_image": {
+    "identity": {
+      "id": "sha256:56a54ae6d89729b5a616f6572dc8b4adb9681a0bb3e4d3e491136e6348376444",
+      "tags": [
+        "local-2022-02-17_21-20-38",
+        "local-2022-02-18_14-07-51",
+        "local-2022-02-18_14-27-01",
+        "local-2022-02-18_14-31-26",
+        "local-2022-02-18_14-33-24",
+        "local-2022-02-18_14-33-42",
+        "local-2022-02-18_14-35-17",
+        "local-2022-02-18_14-36-19",
+        "local-2022-02-18_14-45-24",
+        "local-2022-02-18_14-50-14"
+      ],
+      "names": [
+        "codeclimate/codeclimate-semgrep:local-2022-02-17_21-20-38",
+        "codeclimate/codeclimate-semgrep:local-2022-02-18_14-07-51",
+        "codeclimate/codeclimate-semgrep:local-2022-02-18_14-27-01",
+        "codeclimate/codeclimate-semgrep:local-2022-02-18_14-31-26",
+        "codeclimate/codeclimate-semgrep:local-2022-02-18_14-33-24",
+        "codeclimate/codeclimate-semgrep:local-2022-02-18_14-33-42",
+        "codeclimate/codeclimate-semgrep:local-2022-02-18_14-35-17",
+        "codeclimate/codeclimate-semgrep:local-2022-02-18_14-36-19",
+        "codeclimate/codeclimate-semgrep:local-2022-02-18_14-45-24",
+        "codeclimate/codeclimate-semgrep:local-2022-02-18_14-50-14"
+      ]
+    },
+    "size": 634069337,
+    "size_human": "634 MB",
+    "create_time": "2022-02-17T15:53:51Z",
+    "docker_version": "20.10.7",
+    "architecture": "amd64",
+    "os": "linux",
+    "env_vars": [
+      "PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"
+    ],
+    "container_entry": {
+      "exe_path": ""
+    }
+  },
+  "minified_image_size": 7243959,
+  "minified_image_size_human": "7.2 MB",
+  "minified_image": "codeclimate/codeclimate-semgrep:slim",
+  "minified_image_has_data": true,
+  "minified_by": 87.5307738489409,
+  "artifact_location": "/tmp/docker-slim-state/.docker-slim-state/images/56a54ae6d89729b5a616f6572dc8b4adb9681a0bb3e4d3e491136e6348376444/artifacts",
+  "container_report_name": "creport.json",
+  "seccomp_profile_name": "codeclimate-codeclimate-semgrep-seccomp.json",
+  "apparmor_profile_name": "codeclimate-codeclimate-semgrep-apparmor-profile",
+  "image_stack": [
+    {
+      "is_top_image": false,
+      "id": "sha256:54c9d81cbb440897908abdcaa98674db83444636c300170cfd211e40a66f704f",
+      "full_name": "ubuntu:20.04",
+      "repo_name": "ubuntu",
+      "version_tag": "20.04",
+      "raw_tags": ["ubuntu:20.04"],
+      "create_time": "2022-02-02T02:14:46Z",
+      "new_size": 72775208,
+      "new_size_human": "73 MB",
+      "instructions": [
+        {
+          "type": "ADD",
+          "time": "2022-02-02T02:14:45Z",
+          "is_nop": true,
+          "local_image_exists": false,
+          "layer_index": 0,
+          "size": 72775208,
+          "size_human": "73 MB",
+          "params": "file:3ccf747d646089ed7fbb43c40c45dd43e86f0674115f856efada93c7e4a63624 in /",
+          "command_snippet": "ADD file:3ccf747d646089ed7fbb43c40c45dd43e86...",
+          "command_all": "ADD file:3ccf747d646089ed7fbb43c40c45dd43e86f0674115f856efada93c7e4a63624 /",
+          "target": "/",
+          "source_type": "file"
+        },
+        {
+          "type": "CMD",
+          "time": "2022-02-02T02:14:46Z",
+          "is_last_instruction": true,
+          "is_nop": true,
+          "is_exec_form": true,
+          "local_image_exists": true,
+          "layer_index": 0,
+          "size": 0,
+          "params": "[\"bash\"]\n",
+          "command_snippet": "CMD [\"bash\"]\n",
+          "command_all": "CMD [\"bash\"]\n",
+          "raw_tags": ["ubuntu:20.04"]
+        }
+      ]
+    },
+    {
+      "is_top_image": true,
+      "id": "sha256:56a54ae6d89729b5a616f6572dc8b4adb9681a0bb3e4d3e491136e6348376444",
+      "full_name": "codeclimate/codeclimate-semgrep:local-2022-02-17_21-20-38",
+      "repo_name": "codeclimate/codeclimate-semgrep",
+      "version_tag": "local-2022-02-17_21-20-38",
+      "raw_tags": [
+        "codeclimate/codeclimate-semgrep:local-2022-02-17_21-20-38",
+        "codeclimate/codeclimate-semgrep:local-2022-02-18_14-07-51",
+        "codeclimate/codeclimate-semgrep:local-2022-02-18_14-27-01",
+        "codeclimate/codeclimate-semgrep:local-2022-02-18_14-31-26",
+        "codeclimate/codeclimate-semgrep:local-2022-02-18_14-33-24",
+        "codeclimate/codeclimate-semgrep:local-2022-02-18_14-33-42",
+        "codeclimate/codeclimate-semgrep:local-2022-02-18_14-35-17",
+        "codeclimate/codeclimate-semgrep:local-2022-02-18_14-36-19",
+        "codeclimate/codeclimate-semgrep:local-2022-02-18_14-45-24",
+        "codeclimate/codeclimate-semgrep:local-2022-02-18_14-50-14"
+      ],
+      "create_time": "2022-02-17T15:53:51Z",
+      "new_size": 561294129,
+      "new_size_human": "561 MB",
+      "base_image_id": "sha256:54c9d81cbb440897908abdcaa98674db83444636c300170cfd211e40a66f704f",
+      "instructions": [
+        {
+          "type": "RUN",
+          "time": "2022-02-17T15:51:16Z",
+          "is_nop": false,
+          "local_image_exists": true,
+          "intermediate_image_id": "sha256:433b3fbfaa6c91d9f0bc4ffaa8310ffe4bf835655155efa694149ebd32138357",
+          "layer_index": 0,
+          "size": 42916858,
+          "size_human": "43 MB",
+          "command_snippet": "RUN apt-get update && \\\n\tapt-get install -y ...",
+          "command_all": "RUN apt-get update && \\\n\tapt-get install -y --no-install-recommends     'python3=3.8.*'     'python3-pip=20.*' && \\\n\tapt-get clean && \\\n\trm -rf /var/lib/apt/lists/*",
+          "system_commands": [
+            "apt-get update",
+            "apt-get install -y --no-install-recommends     'python3=3.8.*'     'python3-pip=20.*'",
+            "apt-get clean",
+            "rm -rf /var/lib/apt/lists/*"
+          ]
+        },
+        {
+          "type": "ARG",
+          "time": "2022-02-17T15:51:17Z",
+          "is_nop": true,
+          "local_image_exists": true,
+          "intermediate_image_id": "sha256:2d06c793df3f53ee46decc3c0272ea6f5c25d1b41024a464172a6479e1888645",
+          "layer_index": 0,
+          "size": 0,
+          "params": "DEBIAN_FRONTEND=noninteractive",
+          "command_snippet": "ARG DEBIAN_FRONTEND=noninteractive",
+          "command_all": "ARG DEBIAN_FRONTEND=noninteractive"
+        },
+        {
+          "type": "RUN",
+          "time": "2022-02-17T15:53:00Z",
+          "is_nop": false,
+          "is_exec_form": true,
+          "local_image_exists": true,
+          "intermediate_image_id": "sha256:58fee0b8091f5138def087e5e63afe9333c576c3bfbbfdb68219c1a98430a207",
+          "layer_index": 0,
+          "size": 378396699,
+          "size_human": "378 MB",
+          "command_snippet": "RUN [\"|1\",\"DEBIAN_FRONTEND=noninteractive\",\"...",
+          "command_all": "RUN [\"|1\",\"DEBIAN_FRONTEND=noninteractive\",\"/bin/sh\",\"-c\",\"apt-get\",\"update\",\"&&\",\"apt-get\",\"install\",\"-y\",\"--no-install-recommends\",\"curl=7.*\",\"nodejs=10.*\",\"npm=6.*\",\"git=1:2.*\",\"build-essential=*\",\"&&\",\"apt-get\",\"clean\",\"&&\",\"rm\",\"-rf\",\"/var/lib/apt/lists/*\"]",
+          "system_commands": [
+            "[\"|1\",\"DEBIAN_FRONTEND=noninteractive\",\"/bin/sh\",\"-c\",\"apt-get\",\"update\",\"",
+            "\",\"apt-get\",\"install\",\"-y\",\"--no-install-recommends\",\"curl=7.*\",\"nodejs=10.*\",\"npm=6.*\",\"git=1:2.*\",\"build-essential=*\",\"",
+            "\",\"apt-get\",\"clean\",\"",
+            "\",\"rm\",\"-rf\",\"/var/lib/apt/lists/*\"]"
+          ]
+        },
+        {
+          "type": "RUN",
+          "time": "2022-02-17T15:53:04Z",
+          "is_nop": false,
+          "is_exec_form": true,
+          "local_image_exists": true,
+          "intermediate_image_id": "sha256:d91d03f341b593f7bc82c7fd038acc8354a6df08abdfdc6834236bcb6edd1b7a",
+          "layer_index": 0,
+          "size": 3288888,
+          "size_human": "3.3 MB",
+          "command_snippet": "RUN [\"|1\",\"DEBIAN_FRONTEND=noninteractive\",\"...",
+          "command_all": "RUN [\"|1\",\"DEBIAN_FRONTEND=noninteractive\",\"/bin/sh\",\"-c\",\"curl\",\"-L\",\"-o\",\"/usr/local/bin/hadolint\",\"https://github.com/hadolint/hadolint/releases/download/v1.19.0/hadolint-Linux-x86_64\",\"&&\",\"chmod\",\"+x\",\"/usr/local/bin/hadolint\"]",
+          "system_commands": [
+            "[\"|1\",\"DEBIAN_FRONTEND=noninteractive\",\"/bin/sh\",\"-c\",\"curl\",\"-L\",\"-o\",\"/usr/local/bin/hadolint\",\"https://github.com/hadolint/hadolint/releases/download/v1.19.0/hadolint-Linux-x86_64\",\"",
+            "\",\"chmod\",\"+x\",\"/usr/local/bin/hadolint\"]"
+          ]
+        },
+        {
+          "type": "RUN",
+          "time": "2022-02-17T15:53:24Z",
+          "is_nop": false,
+          "is_exec_form": true,
+          "local_image_exists": true,
+          "intermediate_image_id": "sha256:7640a07c4a12cffc55b9cc6f9c1df484e924d1446391ea5babbcba0a9599aa1e",
+          "layer_index": 0,
+          "size": 53340857,
+          "size_human": "53 MB",
+          "command_snippet": "RUN [\"|1\",\"DEBIAN_FRONTEND=noninteractive\",\"...",
+          "command_all": "RUN [\"|1\",\"DEBIAN_FRONTEND=noninteractive\",\"/bin/sh\",\"-c\",\"pip3\",\"install\",\"poetry>=0.12\",\"&&\",\"poetry\",\"config\",\"virtualenvs.in-project\",\"true\"]",
+          "system_commands": [
+            "[\"|1\",\"DEBIAN_FRONTEND=noninteractive\",\"/bin/sh\",\"-c\",\"pip3\",\"install\",\"poetry>=0.12\",\"",
+            "\",\"poetry\",\"config\",\"virtualenvs.in-project\",\"true\"]"
+          ]
+        },
+        {
+          "type": "RUN",
+          "time": "2022-02-17T15:53:51Z",
+          "is_nop": false,
+          "is_exec_form": true,
+          "local_image_exists": true,
+          "intermediate_image_id": "sha256:a00c73c5eb0a351be2e946ce9cd1852124634e4a399cce0f0395748c998804a5",
+          "layer_index": 0,
+          "size": 83350827,
+          "size_human": "83 MB",
+          "command_snippet": "RUN [\"|1\",\"DEBIAN_FRONTEND=noninteractive\",\"...",
+          "command_all": "RUN [\"|1\",\"DEBIAN_FRONTEND=noninteractive\",\"/bin/sh\",\"-c\",\"npm\",\"install\",\"-g\",\"quicktype@15.x\"]",
+          "system_commands": [
+            "[\"|1\",\"DEBIAN_FRONTEND=noninteractive\",\"/bin/sh\",\"-c\",\"npm\",\"install\",\"-g\",\"quicktype@15.x\"]"
+          ]
+        },
+        {
+          "type": "WORKDIR",
+          "time": "2022-02-17T15:53:51Z",
+          "is_last_instruction": true,
+          "is_nop": true,
+          "local_image_exists": true,
+          "layer_index": 0,
+          "size": 0,
+          "params": "/workspaces/codeclimate-semgrep",
+          "command_snippet": "WORKDIR /workspaces/codeclimate-semgrep",
+          "command_all": "WORKDIR /workspaces/codeclimate-semgrep",
+          "system_commands": ["mkdir -p /workspaces/codeclimate-semgrep"],
+          "raw_tags": [
+            "codeclimate/codeclimate-semgrep:local-2022-02-17_21-20-38",
+            "codeclimate/codeclimate-semgrep:local-2022-02-18_14-07-51",
+            "codeclimate/codeclimate-semgrep:local-2022-02-18_14-27-01",
+            "codeclimate/codeclimate-semgrep:local-2022-02-18_14-31-26",
+            "codeclimate/codeclimate-semgrep:local-2022-02-18_14-33-24",
+            "codeclimate/codeclimate-semgrep:local-2022-02-18_14-33-42",
+            "codeclimate/codeclimate-semgrep:local-2022-02-18_14-35-17",
+            "codeclimate/codeclimate-semgrep:local-2022-02-18_14-36-19",
+            "codeclimate/codeclimate-semgrep:local-2022-02-18_14-45-24",
+            "codeclimate/codeclimate-semgrep:local-2022-02-18_14-50-14"
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -13,10 +13,14 @@ SCHEMA_DIR    := schemas
 JSON_SCHEMAS  := $(shell find $(SCHEMA_DIR) -name '*.json')
 PY_SCHEMAS    := $(patsubst $(SCHEMA_DIR)/%.json,$(MODULE_DIR)/%.py,$(JSON_SCHEMAS))
 
+IMAGE_NAME      := ${REPO}:${TAG}
+SLIM_IMAGE_NAME := ${REPO}:slim 
+
 
 .PHONY: test
-test:
+test: slim
 	poetry run pytest
+	container-structure-test test --image $(IMAGE_NAME) --config tests/container-test-config.yaml && container-structure-test test --image $(SLIM_IMAGE_NAME) --config tests/container-test-config.yaml
 
 .PHONY: lint-all
 lint-all: lint-dockerfile lint-python
@@ -35,6 +39,12 @@ build-docker:
 	docker build --target ${TARGET} -t ${REPO}:${TAG} ${BUILD_CONTEXT}
 	@echo "----"
 	@echo "To run a shell: TAG=${TAG} make shell"
+
+image: build-docker
+
+slim: image
+	docker-slim build --tag $(SLIM_IMAGE_NAME) --http-probe=false --exec 'ccsemgrep -c config.json || continue' --mount "$$PWD/tests:/code" --workdir '/code' --preserve-path-file 'paths.txt' $(IMAGE_NAME) && prettier --write slim.report.json 
+	
 
 .PHONY: build-package
 build-package:
