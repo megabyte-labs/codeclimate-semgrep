@@ -16,6 +16,7 @@ ARG DEBIAN_FRONTEND=noninteractive
 RUN apt-get update \
     && apt-get install -y --no-install-recommends \
     curl=7.* \
+    jq=1.* \
     nodejs=10.* \
     npm=6.* \
     git=1:2.* \
@@ -40,6 +41,8 @@ COPY local/engine.json /engine.json
 COPY --from=build /work/dist /tmp/dist
 
 RUN pip3 install /tmp/dist/*.whl \
+    && VERSION="$(semgrep --version 2>&1 | sed -n 3p)" \
+    && jq --arg version "$VERSION" '.version = $version' > /engine.json < ./engine.json \
     && rm -rf /tmp/dist /root/.cache/pip \
     && useradd -u 9000 -M app
 
