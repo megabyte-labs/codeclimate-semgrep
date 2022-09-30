@@ -102,9 +102,17 @@
     ],
     "description": "A Semgrep slim container and a CodeClimate engine container for GitLab CI",
     "dockerBaseTag": "semgrep",
+    "dockerLatestSize": {
+      "codeclimate": "93M",
+      "semgrep": "98M"
+    },
     "dockerSlimCommand": {
-      "semgrep": "--http-probe=false --exec 'semgrep --version && semgrep --config auto'",
-      "codeclimate": "--http-probe=false --exec 'codeclimate-semgrep -c /test-config.json'"
+      "codeclimate": "--http-probe=false --exec 'codeclimate-semgrep -c /test-config.json'",
+      "semgrep": "--http-probe=false --exec 'semgrep --version && semgrep --config auto'"
+    },
+    "dockerSlimSize": {
+      "codeclimate": "58M",
+      "semgrep": "37M"
     },
     "group": "docker",
     "name": "Semgrep",
@@ -116,15 +124,7 @@
     "slug": "semgrep",
     "subgroup": "codeclimate",
     "title": "Semgrep CodeClimate Engine",
-    "versionCommand": "docker run -it megabytelabs/semgrep:latest --version 2>&1 | sed -n 3p",
-    "dockerSlimSize": {
-      "semgrep": "37M",
-      "codeclimate": "58M"
-    },
-    "dockerLatestSize": {
-      "semgrep": "98M",
-      "codeclimate": "93M"
-    }
+    "versionCommand": "docker run -it megabytelabs/semgrep:latest --version 2>&1 | sed -n 3p"
   },
   "changelog": {
     "displayTypes": [

@@ -73,6 +73,8 @@
     - [CodeClimate GitLab CI Example](#codeclimate-gitlab-ci-example)
     - [CodeClimate CLI Walkthrough](#codeclimate-cli-walkthrough)
     - [Standalone Integration](#standalone-integration)
+- [Configuring Semgrep](#configuring-semgrep)
+  - [Sample CodeClimate Configuration](#sample-codeclimate-configuration)
   - [Building the Docker Container](#building-the-docker-container)
   - [Building a Slim Container](#building-a-slim-container)
   - [Build Tools](#build-tools)
@@ -201,7 +203,24 @@ include:
 
 That is it! Semgrep will now run anytime you commit code (that matches the parameters laid out in the `remote:` file above). Ideally, for production, you should copy the source code from the `remote:` link above to another location and update the `remote:` link to the file's new location. That way, you do not have to worry about any changes that are made to the `remote:` file by our team.
 
-<!-- Add content in this file to include it in automatically generated README.md -->
+<a href="#configuring-semgrep" style="width:100%"><img style="width:100%" src="https://gitlab.com/megabyte-labs/assets/-/raw/master/png/aqua-divider.png" /></a>
+
+## Configuring Semgrep
+
+The Semgrep engine will run on all non-excluded files using an array of configs saved in your `.codeclimate.yml` file. The following is an example of what the `.codeclimate.yml` could look like:
+
+### Sample CodeClimate Configuration
+
+```yaml
+---
+engines:
+  semgrep:
+    enabled: true
+    options:
+      configs:
+        - auto
+        - p/ci
+```
 
 ### Building the Docker Container
 

@@ -1,4 +1,4 @@
 {
-  "include_paths": ["."],
-  "configs": ["auto", "r/csharp.dotnet.security.audit.mass-assignment.mass-assignment"]
+  "configs": ["auto", "r/csharp.dotnet.security.audit.mass-assignment.mass-assignment"],
+  "include_paths": ["."]
 }
