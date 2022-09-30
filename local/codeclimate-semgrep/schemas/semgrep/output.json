@@ -1,54 +1,41 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "type": "object",
-  "title": "Semgrep Output",
-  "description": "A JSON Schema describing the Semgrep output format. This isn't exhaustive, and only implements enough of the output to be useful for our purposes",
-  "required": ["results", "errors"],
   "definitions": {
-    "result": {
-      "$id": "#/definitions/result",
-      "type": "object",
-      "description": "A result matching a check",
-      "required": ["check_id", "path", "start", "end", "extra"],
+    "error": {
+      "$id": "#/definitions/error",
+      "description": "An error encountered while running a check",
       "properties": {
-        "check_id": {
-          "type": "string",
-          "description": "Identifier for the check that matched"
+        "code": { "type": "integer" },
+        "help": { "type": "string" },
+        "level": { "type": "string" },
+        "long_msg": { "type": "string" },
+        "short_msg": { "type": "string" },
+        "spans": {
+          "items": {
+            "properties": {
+              "end": { "$ref": "#/definitions/location" },
+              "file": { "type": "string" },
+              "source_hash": { "type": "string" },
+              "start": { "$ref": "#/definitions/location" }
+            },
+            "type": "object"
+          },
+          "type": "array"
         },
-        "path": {
-          "type": "string",
-          "description": "Location of the matching file"
-        },
-        "start": { "$ref": "#/definitions/location" },
-        "end": { "$ref": "#/definitions/location" },
-        "extra": { "$ref": "#/definitions/extra" }
-      }
-    },
-    "location": {
-      "$id": "#/definitions/location",
-      "type": "object",
-      "description": "Position in a file",
-      "required": ["line", "col"],
-      "properties": {
-        "line": { "type": "integer" },
-        "col": { "type": "integer" }
-      }
+        "type": { "type": "string" }
+      },
+      "type": "object"
     },
     "extra": {
       "$id": "#/definitions/extra",
-      "type": "object",
       "description": "Extra result data",
-      "required": ["message", "severity", "metadata"],
       "properties": {
         "message": { "type": "string" },
-        "severity": { "type": "string", "enum": ["ERROR", "WARNING", "INFO"] },
         "metadata": {
-          "type": "object",
+          "additionalProperties": true,
           "properties": {
             "cc.categories": {
-              "type": "array",
               "items": {
-                "type": "string",
                 "enum": [
                   "Bug Risk",
                   "Clarity",
@@ -58,62 +45,69 @@
                   "Performance",
                   "Security",
                   "Style"
-                ]
-              }
+                ],
+                "type": "string"
+              },
+              "type": "array"
             },
             "cc.severity": {
-              "type": "string",
-              "enum": [
-                "info",
-                "minor",
-                "major",
-                "critical",
-                "blocker"
-              ]
+              "enum": ["info", "minor", "major", "critical", "blocker"],
+              "type": "string"
             }
           },
-          "additionalProperties": true
-        }
-      }
-    },
-    "error": {
-      "$id": "#/definitions/error",
-      "type": "object",
-      "description": "An error encountered while running a check",
-      "properties": {
-        "type": { "type": "string" },
-        "code": { "type": "integer" },
-        "short_msg": { "type": "string" },
-        "long_msg": { "type": "string" },
-        "level": { "type": "string" },
-        "spans": {
-          "type": "array",
-          "items": {
-            "type": "object",
-            "properties": {
-              "start": { "$ref": "#/definitions/location" },
-              "end": { "$ref": "#/definitions/location" },
-              "source_hash": { "type": "string" },
-              "file": { "type": "string" }
-            }
-          }
+          "type": "object"
         },
-        "help": { "type": "string" }
-      }
+        "severity": { "enum": ["ERROR", "WARNING", "INFO"], "type": "string" }
+      },
+      "required": ["message", "severity", "metadata"],
+      "type": "object"
+    },
+    "location": {
+      "$id": "#/definitions/location",
+      "description": "Position in a file",
+      "properties": {
+        "col": { "type": "integer" },
+        "line": { "type": "integer" }
+      },
+      "required": ["line", "col"],
+      "type": "object"
+    },
+    "result": {
+      "$id": "#/definitions/result",
+      "description": "A result matching a check",
+      "properties": {
+        "check_id": {
+          "description": "Identifier for the check that matched",
+          "type": "string"
+        },
+        "end": { "$ref": "#/definitions/location" },
+        "extra": { "$ref": "#/definitions/extra" },
+        "path": {
+          "description": "Location of the matching file",
+          "type": "string"
+        },
+        "start": { "$ref": "#/definitions/location" }
+      },
+      "required": ["check_id", "path", "start", "end", "extra"],
+      "type": "object"
     }
   },
+  "description": "A JSON Schema describing the Semgrep output format. This isn't exhaustive, and only implements enough of the output to be useful for our purposes",
   "properties": {
-    "results": {
-      "$id": "#/properties/results",
-      "type": "array",
-      "description": "Results of the run",
-      "items": { "$ref": "#/definitions/result" }
-    },
     "errors": {
       "$id": "#/properties/errors",
-      "type": "array",
       "description": "Results from the run",
-      "items": { "$ref": "#/definitions/error" }
+      "items": { "$ref": "#/definitions/error" },
+      "type": "array"
+    },
+    "results": {
+      "$id": "#/properties/results",
+      "description": "Results of the run",
+      "items": { "$ref": "#/definitions/result" },
+      "type": "array"
     }
-  }
+  },
+  "required": ["results", "errors"],
+  "title": "Semgrep Output",
+  "type": "object"
 }

@@ -1,18 +1,18 @@
 {
   "private": false,
-  "name": "@megabytelabs/codeclimate-ansible-lint",
+  "name": "@megabytelabs/codeclimate-semgrep",
   "version": "5.4.0",
-  "description": "An Ansible Lint slim container and a CodeClimate engine container for GitLab CI",
+  "description": "A Semgrep slim container and a CodeClimate engine container for GitLab CI",
   "license": "MIT",
   "author": "Brian Zalewski <brian@megabyte.space> (https://megabyte.space)",
   "homepage": "https://megabyte.space",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/megabyte-labs/codeclimate-ansible-lint.git"
+    "url": "git+https://github.com/megabyte-labs/codeclimate-semgrep.git"
   },
   "bugs": {
     "email": "help@megabyte.space",
-    "url": "https://gitlab.com/megabyte-labs/docker/codeclimate/ansible-lint/-/issues"
+    "url": "https://gitlab.com/megabyte-labs/docker/codeclimate/semgrep/-/issues"
   },
   "type": "commonjs",
   "main": "dist/main.js",
@@ -79,7 +79,7 @@
     "node": ">=14.18.0"
   },
   "publishConfig": {
-    "@gitlab:registry": "https://gitlab.com/api/v4/projects/32219574/packages/npm/",
+    "@gitlab:registry": "https://gitlab.com/api/v4/projects//packages/npm/",
     "@megabyte:registry": "https://gitlab.com/api/v4/projects//packages/npm/",
     "access": "public",
     "registry": "https://registry.npmjs.org/",

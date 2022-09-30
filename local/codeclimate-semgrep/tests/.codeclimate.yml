@@ -1,6 +1,6 @@
-version: "2"
+version: '2'
 plugins:
   semgrep:
     enabled: true
     runs:
-      - configs: ["sentinel-body.yml", "sentinel-definition.yml"]
+      - configs: [sentinel-body.yml, sentinel-definition.yml]

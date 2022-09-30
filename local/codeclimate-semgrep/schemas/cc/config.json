@@ -1,13 +1,9 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "type": "object",
-  "title": "Config",
-  "description": "A JSON Schema describing the Code Climate Engine config format",
-  "required": ["include_paths", "runs"],
   "definitions": {
     "run": {
       "$id": "#/definitions/run",
-      "type": "object",
+      "additionalProperties": false,
       "oneOf": [
         {
           "required": ["configs"]
@@ -18,31 +14,35 @@
       ],
       "properties": {
         "configs": {
-          "type": "array",
           "items": { "type": "string" },
-          "minItems": 1
+          "minItems": 1,
+          "type": "array"
         },
-        "pattern": { "type": "string" },
+        "exclude": { "items": { "type": "string" }, "type": "array" },
+        "include": { "items": { "type": "string" }, "type": "array" },
         "lang": { "type": "string" },
-        "exclude": { "type": "array", "items": { "type": "string" } },
-        "include": { "type": "array", "items": { "type": "string" } }
+        "pattern": { "type": "string" }
       },
-      "additionalProperties": false
+      "type": "object"
     }
   },
+  "description": "A JSON Schema describing the Code Climate Engine config format",
   "properties": {
     "include_paths": {
       "$id": "#/properties/include_paths",
-      "type": "array",
       "description": "Paths to run against",
-      "items": { "type": "string" }
+      "items": { "type": "string" },
+      "type": "array"
     },
     "runs": {
       "$id": "#/properties/runs",
-      "type": "array",
       "description": "Semgrep runs",
       "items": { "$ref": "#/definitions/run" },
-      "minItems": 1
+      "minItems": 1,
+      "type": "array"
     }
-  }
+  },
+  "required": ["include_paths", "runs"],
+  "title": "Config",
+  "type": "object"
 }

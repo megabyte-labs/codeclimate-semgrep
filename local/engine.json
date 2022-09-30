@@ -1,11 +1,24 @@
 {
-  "name": "semgrep",
-  "description": "Semgrep is a lightweight, offline, open-source, static analysis tool.",
+  "description": "A Semgrep slim container and a CodeClimate engine container for GitLab CI",
+  "languages": [
+    "C#",
+    "GoLang",
+    "Java",
+    "JavaScript",
+    "Kotlin",
+    "PHP",
+    "Python",
+    "Ruby",
+    "Scala",
+    "Swift",
+    "TypeScript",
+    "YAML"
+  ],
   "maintainer": {
-    "name": "Brian Zalewski",
-    "email": "help@megabyte.space"
+    "email": "help@megabyte.space",
+    "name": "Megabyte Labs"
   },
-  "languages": ["*"],
-  "version": "1.0.0",
-  "spec_version": "0.0.1"
+  "name": "semgrep",
+  "spec_version": "0.3.1",
+  "version": "5.4.0"
 }
