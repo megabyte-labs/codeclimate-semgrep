@@ -1,0 +1,193 @@
+{
+  "version": "1.0",
+  "engine": "darwin|Transformer|1.37.5|86fbd29ab3549fa564e87e4770178480cb0542d3|2022-03-21_06:10:20AM",
+  "containerized": false,
+  "host_distro": {
+    "name": "",
+    "version": "",
+    "display_name": "other"
+  },
+  "type": "build",
+  "state": "done",
+  "target_reference": "megabytelabs/semgrep:latest",
+  "system": {
+    "type": "Linux",
+    "release": "5.10.104-linuxkit",
+    "distro": {
+      "name": "Ubuntu",
+      "version": "20.04",
+      "display_name": "Ubuntu 20.04.5 LTS"
+    }
+  },
+  "source_image": {
+    "identity": {
+      "id": "sha256:8bdff745e4d2317fc07fc6a65248fe3a61d8defaa347371a3528cdb20ef19e3a",
+      "tags": ["latest"],
+      "names": ["megabytelabs/semgrep:latest"]
+    },
+    "size": 270506977,
+    "size_human": "270 MB",
+    "create_time": "2022-09-30T06:15:30Z",
+    "docker_version": "",
+    "architecture": "amd64",
+    "user": "root",
+    "os": "linux",
+    "labels": {
+      "space.megabyte.type": "linter"
+    },
+    "env_vars": ["PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"],
+    "container_entry": {
+      "exe_path": ""
+    }
+  },
+  "minified_image_size": 144626210,
+  "minified_image_size_human": "145 MB",
+  "minified_image": "megabytelabs/semgrep:slim",
+  "minified_image_has_data": true,
+  "minified_by": 1.8703869582145587,
+  "artifact_location": "/tmp/docker-slim-state/.docker-slim-state/images/8bdff745e4d2317fc07fc6a65248fe3a61d8defaa347371a3528cdb20ef19e3a/artifacts",
+  "container_report_name": "creport.json",
+  "seccomp_profile_name": "megabytelabs-semgrep-seccomp.json",
+  "apparmor_profile_name": "megabytelabs-semgrep-apparmor-profile",
+  "image_stack": [
+    {
+      "is_top_image": true,
+      "id": "sha256:8bdff745e4d2317fc07fc6a65248fe3a61d8defaa347371a3528cdb20ef19e3a",
+      "full_name": "megabytelabs/semgrep:latest",
+      "repo_name": "megabytelabs/semgrep",
+      "version_tag": "latest",
+      "raw_tags": ["megabytelabs/semgrep:latest"],
+      "create_time": "2022-09-30T06:15:30Z",
+      "new_size": 270506977,
+      "new_size_human": "270 MB",
+      "instructions": [
+        {
+          "type": "ADD",
+          "time": "2022-09-01T23:46:26Z",
+          "is_nop": true,
+          "local_image_exists": false,
+          "layer_index": 0,
+          "size": 72776031,
+          "size_human": "73 MB",
+          "params": "file:ff6963f777661fb16cc12fb04a97c558bd94768a6e4ab5bd90e01f3086818853 in /",
+          "command_snippet": "ADD file:ff6963f777661fb16cc12fb04a97c558bd9...",
+          "command_all": "ADD file:ff6963f777661fb16cc12fb04a97c558bd94768a6e4ab5bd90e01f3086818853 /",
+          "target": "/",
+          "source_type": "file"
+        },
+        {
+          "type": "CMD",
+          "time": "2022-09-01T23:46:27Z",
+          "is_nop": true,
+          "is_exec_form": true,
+          "local_image_exists": false,
+          "layer_index": 0,
+          "size": 0,
+          "params": "[\"bash\"]\n",
+          "command_snippet": "CMD [\"bash\"]\n",
+          "command_all": "CMD [\"bash\"]\n"
+        },
+        {
+          "type": "RUN",
+          "time": "2022-09-30T06:15:05Z",
+          "is_nop": false,
+          "is_exec_form": true,
+          "local_image_exists": false,
+          "layer_index": 0,
+          "size": 0,
+          "command_snippet": "RUN [\"WORKDIR\",\"/work\"]",
+          "command_all": "RUN [\"WORKDIR\",\"/work\"]",
+          "system_commands": ["[\"WORKDIR\",\"/work\"]"],
+          "comment": "buildkit.dockerfile.v0"
+        },
+        {
+          "type": "RUN",
+          "time": "2022-09-30T06:15:20Z",
+          "is_nop": false,
+          "is_exec_form": true,
+          "local_image_exists": false,
+          "layer_index": 0,
+          "size": 42916754,
+          "size_human": "43 MB",
+          "command_snippet": "RUN [\"RUN\",\"/bin/sh\",\"-c\",\"apt-get\",\"update\"...",
+          "command_all": "RUN [\"RUN\",\"/bin/sh\",\"-c\",\"apt-get\",\"update\",\"&&\",\"apt-get\",\"install\",\"-y\",\"--no-install-recommends\",\"python3=3.8.*\",\"python3-pip=20.*\",\"&&\",\"apt-get\",\"clean\",\"&&\",\"rm\",\"-rf\",\"/var/lib/apt/lists/*\"]",
+          "system_commands": [
+            "[\"RUN\",\"/bin/sh\",\"-c\",\"apt-get\",\"update\",\"",
+            "\",\"apt-get\",\"install\",\"-y\",\"--no-install-recommends\",\"python3=3.8.*\",\"python3-pip=20.*\",\"",
+            "\",\"apt-get\",\"clean\",\"",
+            "\",\"rm\",\"-rf\",\"/var/lib/apt/lists/*\"]"
+          ],
+          "comment": "buildkit.dockerfile.v0"
+        },
+        {
+          "type": "RUN",
+          "time": "2022-09-30T06:15:30Z",
+          "is_nop": false,
+          "is_exec_form": true,
+          "local_image_exists": false,
+          "layer_index": 0,
+          "size": 0,
+          "command_snippet": "RUN [\"USER\",\"root\"]",
+          "command_all": "RUN [\"USER\",\"root\"]",
+          "system_commands": ["[\"USER\",\"root\"]"],
+          "comment": "buildkit.dockerfile.v0"
+        },
+        {
+          "type": "RUN",
+          "time": "2022-09-30T06:15:30Z",
+          "is_nop": false,
+          "is_exec_form": true,
+          "local_image_exists": false,
+          "layer_index": 0,
+          "size": 154814192,
+          "size_human": "155 MB",
+          "command_snippet": "RUN [\"RUN\",\"/bin/sh\",\"-c\",\"python3\",\"-m\",\"pi...",
+          "command_all": "RUN [\"RUN\",\"/bin/sh\",\"-c\",\"python3\",\"-m\",\"pip\",\"install\",\"semgrep\"]",
+          "system_commands": ["[\"RUN\",\"/bin/sh\",\"-c\",\"python3\",\"-m\",\"pip\",\"install\",\"semgrep\"]"],
+          "comment": "buildkit.dockerfile.v0"
+        },
+        {
+          "type": "RUN",
+          "time": "2022-09-30T06:15:30Z",
+          "is_nop": false,
+          "is_exec_form": true,
+          "local_image_exists": false,
+          "layer_index": 0,
+          "size": 0,
+          "command_snippet": "RUN [\"ENTRYPOINT\",\"[semgrep]\"]",
+          "command_all": "RUN [\"ENTRYPOINT\",\"[semgrep]\"]",
+          "system_commands": ["[\"ENTRYPOINT\",\"[semgrep]\"]"],
+          "comment": "buildkit.dockerfile.v0"
+        },
+        {
+          "type": "RUN",
+          "time": "2022-09-30T06:15:30Z",
+          "is_nop": false,
+          "is_exec_form": true,
+          "local_image_exists": false,
+          "layer_index": 0,
+          "size": 0,
+          "command_snippet": "RUN [\"CMD\",\"[--version]\"]",
+          "command_all": "RUN [\"CMD\",\"[--version]\"]",
+          "system_commands": ["[\"CMD\",\"[--version]\"]"],
+          "comment": "buildkit.dockerfile.v0"
+        },
+        {
+          "type": "RUN",
+          "time": "2022-09-30T06:15:30Z",
+          "is_last_instruction": true,
+          "is_nop": false,
+          "is_exec_form": true,
+          "local_image_exists": true,
+          "layer_index": 0,
+          "size": 0,
+          "command_snippet": "RUN [\"LABEL\",\"space.megabyte.type=linter\"]",
+          "command_all": "RUN [\"LABEL\",\"space.megabyte.type=linter\"]",
+          "system_commands": ["[\"LABEL\",\"space.megabyte.type=linter\"]"],
+          "comment": "buildkit.dockerfile.v0",
+          "raw_tags": ["megabytelabs/semgrep:latest"]
+        }
+      ]
+    }
+  ]
+}

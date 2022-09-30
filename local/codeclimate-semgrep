@@ -1,0 +1,25 @@
+#!/bin/bash
+
+SEMGREP_COMMAND="semgrep ci --json"
+
+if jq -r '.configs[]' test-config.json &>/dev/null; then
+  while read CONFIG; do
+    SEMGREP_COMMAND="$SEMGREP_COMMAND --config $CONFIG"
+  done < <(jq -r '.configs[]' test-config.json)
+else
+  SEMGREP_COMMAND="$SEMGREP_COMMAND --config auto"
+fi
+
+if jq -r '.include_paths[]' test-config.json &>/dev/null; then
+  while read INCLUDE_PATH; do
+    SEMGREP_COMMAND="$SEMGREP_COMMAND --include $INCLUDE_PATH"
+  done < <(jq -r '.include_paths[]' test-config.json)
+fi
+
+if jq -r '.exclude_paths[]' test-config.json &>/dev/null; then
+  while read EXCLUDE_PATH; do
+    SEMGREP_COMMAND="$SEMGREP_COMMAND --exclude $EXCLUDE_PATH"
+  done < <(jq -r '.exclude_paths[]' test-config.json)
+fi
+
+$(echo "$SEMGREP_COMMAND") | jq --compact-output '.results[] | .description = .extra.message | .fingerprint = .extra.fingerprint | .severity = .extra.severity | .location.path = .path | .location.positions.begin.line = .start.line | .location.positions.begin.column = .start.col | .location.positions.end.line = .end.line | .location.positions.end.column = .end.col | .remediation_points = 50000 | .content.body = "[Source](" + .extra.metadata.source + "]" | .check_name = .check_id'

@@ -1,0 +1,479 @@
+{
+  "version": "1.0",
+  "engine": "darwin|Transformer|1.37.5|86fbd29ab3549fa564e87e4770178480cb0542d3|2022-03-21_06:10:20AM",
+  "containerized": false,
+  "host_distro": {
+    "name": "",
+    "version": "",
+    "display_name": "other"
+  },
+  "type": "build",
+  "state": "error",
+  "error": "exec.cmd.failure",
+  "target_reference": "megabytelabs/semgrep:latest-codeclimate",
+  "system": {
+    "type": "",
+    "release": "",
+    "distro": {
+      "name": "",
+      "version": "",
+      "display_name": ""
+    }
+  },
+  "source_image": {
+    "identity": {
+      "id": ""
+    },
+    "size": 0,
+    "size_human": "",
+    "create_time": "",
+    "docker_version": "",
+    "architecture": "",
+    "container_entry": {
+      "exe_path": ""
+    }
+  },
+  "minified_image_size": 0,
+  "minified_image_size_human": "",
+  "minified_image": "",
+  "minified_image_has_data": false,
+  "minified_by": 0,
+  "artifact_location": "",
+  "container_report_name": "",
+  "seccomp_profile_name": "",
+  "apparmor_profile_name": "",
+  "image_stack": [
+    {
+      "is_top_image": true,
+      "id": "sha256:1b6c5802d354f7644063aee1cb585692ddcb63bbae3bed9998a35074c9e90d4e",
+      "full_name": "codeclimate/codeclimate-semgrep:latest",
+      "repo_name": "codeclimate/codeclimate-semgrep",
+      "version_tag": "latest",
+      "raw_tags": [
+        "codeclimate/codeclimate-semgrep:latest",
+        "megabytelabs/semgrep:latest-codeclimate"
+      ],
+      "create_time": "2022-09-30T10:31:19Z",
+      "new_size": 240441589,
+      "new_size_human": "240 MB",
+      "instructions": [
+        {
+          "type": "ADD",
+          "time": "2022-09-01T23:46:26Z",
+          "is_nop": true,
+          "local_image_exists": false,
+          "layer_index": 0,
+          "size": 72776031,
+          "size_human": "73 MB",
+          "params": "file:ff6963f777661fb16cc12fb04a97c558bd94768a6e4ab5bd90e01f3086818853 in /",
+          "command_snippet": "ADD file:ff6963f777661fb16cc12fb04a97c558bd9...",
+          "command_all": "ADD file:ff6963f777661fb16cc12fb04a97c558bd94768a6e4ab5bd90e01f3086818853 /",
+          "target": "/",
+          "source_type": "file"
+        },
+        {
+          "type": "CMD",
+          "time": "2022-09-01T23:46:27Z",
+          "is_nop": true,
+          "is_exec_form": true,
+          "local_image_exists": false,
+          "layer_index": 0,
+          "size": 0,
+          "params": "[\"bash\"]\n",
+          "command_snippet": "CMD [\"bash\"]\n",
+          "command_all": "CMD [\"bash\"]\n"
+        },
+        {
+          "type": "RUN",
+          "time": "2022-09-30T06:15:05Z",
+          "is_nop": false,
+          "is_exec_form": true,
+          "local_image_exists": false,
+          "layer_index": 0,
+          "size": 0,
+          "command_snippet": "RUN [\"WORKDIR\",\"/work\"]",
+          "command_all": "RUN [\"WORKDIR\",\"/work\"]",
+          "system_commands": [
+            "[\"WORKDIR\",\"/work\"]"
+          ],
+          "comment": "buildkit.dockerfile.v0"
+        },
+        {
+          "type": "RUN",
+          "time": "2022-09-30T06:15:20Z",
+          "is_nop": false,
+          "is_exec_form": true,
+          "local_image_exists": false,
+          "layer_index": 0,
+          "size": 42916754,
+          "size_human": "43 MB",
+          "command_snippet": "RUN [\"RUN\",\"/bin/sh\",\"-c\",\"apt-get\",\"update\"...",
+          "command_all": "RUN [\"RUN\",\"/bin/sh\",\"-c\",\"apt-get\",\"update\",\"&&\",\"apt-get\",\"install\",\"-y\",\"--no-install-recommends\",\"python3=3.8.*\",\"python3-pip=20.*\",\"&&\",\"apt-get\",\"clean\",\"&&\",\"rm\",\"-rf\",\"/var/lib/apt/lists/*\"]",
+          "system_commands": [
+            "[\"RUN\",\"/bin/sh\",\"-c\",\"apt-get\",\"update\",\"",
+            "\",\"apt-get\",\"install\",\"-y\",\"--no-install-recommends\",\"python3=3.8.*\",\"python3-pip=20.*\",\"",
+            "\",\"apt-get\",\"clean\",\"",
+            "\",\"rm\",\"-rf\",\"/var/lib/apt/lists/*\"]"
+          ],
+          "comment": "buildkit.dockerfile.v0"
+        },
+        {
+          "type": "RUN",
+          "time": "2022-09-30T09:30:18Z",
+          "is_nop": false,
+          "is_exec_form": true,
+          "local_image_exists": false,
+          "layer_index": 0,
+          "size": 142,
+          "size_human": "142 B",
+          "command_snippet": "RUN [\"COPY\",\"local/test-config.json\",\"/test-...",
+          "command_all": "RUN [\"COPY\",\"local/test-config.json\",\"/test-config.json\"]",
+          "system_commands": [
+            "[\"COPY\",\"local/test-config.json\",\"/test-config.json\"]"
+          ],
+          "comment": "buildkit.dockerfile.v0"
+        },
+        {
+          "type": "RUN",
+          "time": "2022-09-30T09:30:18Z",
+          "is_nop": false,
+          "is_exec_form": true,
+          "local_image_exists": false,
+          "layer_index": 0,
+          "size": 238,
+          "size_human": "238 B",
+          "command_snippet": "RUN [\"COPY\",\"local/sentinel-body.yml\",\"/sent...",
+          "command_all": "RUN [\"COPY\",\"local/sentinel-body.yml\",\"/sentinel-body.yml\"]",
+          "system_commands": [
+            "[\"COPY\",\"local/sentinel-body.yml\",\"/sentinel-body.yml\"]"
+          ],
+          "comment": "buildkit.dockerfile.v0"
+        },
+        {
+          "type": "RUN",
+          "time": "2022-09-30T09:30:18Z",
+          "is_nop": false,
+          "is_exec_form": true,
+          "local_image_exists": false,
+          "layer_index": 0,
+          "size": 431,
+          "size_human": "431 B",
+          "command_snippet": "RUN [\"COPY\",\"/engine.json\",\"/engine.json\"]",
+          "command_all": "RUN [\"COPY\",\"/engine.json\",\"/engine.json\"]",
+          "system_commands": [
+            "[\"COPY\",\"/engine.json\",\"/engine.json\"]"
+          ],
+          "comment": "buildkit.dockerfile.v0"
+        },
+        {
+          "type": "RUN",
+          "time": "2022-09-30T10:31:08Z",
+          "is_nop": false,
+          "is_exec_form": true,
+          "local_image_exists": false,
+          "layer_index": 0,
+          "size": 24318,
+          "size_human": "24 kB",
+          "command_snippet": "RUN [\"COPY\",\"/work/dist\",\"/tmp/dist\"]",
+          "command_all": "RUN [\"COPY\",\"/work/dist\",\"/tmp/dist\"]",
+          "system_commands": [
+            "[\"COPY\",\"/work/dist\",\"/tmp/dist\"]"
+          ],
+          "comment": "buildkit.dockerfile.v0"
+        },
+        {
+          "type": "RUN",
+          "time": "2022-09-30T10:31:19Z",
+          "is_nop": false,
+          "is_exec_form": true,
+          "local_image_exists": false,
+          "layer_index": 0,
+          "size": 124723675,
+          "size_human": "125 MB",
+          "command_snippet": "RUN [\"RUN\",\"/bin/sh\",\"-c\",\"pip3\",\"install\",\"...",
+          "command_all": "RUN [\"RUN\",\"/bin/sh\",\"-c\",\"pip3\",\"install\",\"/tmp/dist/*.whl\",\"&&\",\"rm\",\"-rf\",\"/tmp/dist\",\"/root/.cache/pip\"]",
+          "system_commands": [
+            "[\"RUN\",\"/bin/sh\",\"-c\",\"pip3\",\"install\",\"/tmp/dist/*.whl\",\"",
+            "\",\"rm\",\"-rf\",\"/tmp/dist\",\"/root/.cache/pip\"]"
+          ],
+          "comment": "buildkit.dockerfile.v0"
+        },
+        {
+          "type": "RUN",
+          "time": "2022-09-30T10:31:19Z",
+          "is_nop": false,
+          "is_exec_form": true,
+          "local_image_exists": false,
+          "layer_index": 0,
+          "size": 0,
+          "command_snippet": "RUN [\"VOLUME\",\"[/code]\"]",
+          "command_all": "RUN [\"VOLUME\",\"[/code]\"]",
+          "system_commands": [
+            "[\"VOLUME\",\"[/code]\"]"
+          ],
+          "comment": "buildkit.dockerfile.v0"
+        },
+        {
+          "type": "RUN",
+          "time": "2022-09-30T10:31:19Z",
+          "is_nop": false,
+          "is_exec_form": true,
+          "local_image_exists": false,
+          "layer_index": 0,
+          "size": 0,
+          "command_snippet": "RUN [\"WORKDIR\",\"/code\"]",
+          "command_all": "RUN [\"WORKDIR\",\"/code\"]",
+          "system_commands": [
+            "[\"WORKDIR\",\"/code\"]"
+          ],
+          "comment": "buildkit.dockerfile.v0"
+        },
+        {
+          "type": "RUN",
+          "time": "2022-09-30T10:31:19Z",
+          "is_nop": false,
+          "is_exec_form": true,
+          "local_image_exists": false,
+          "layer_index": 0,
+          "size": 0,
+          "command_snippet": "RUN [\"CMD\",\"[ccsemgrep]\"]",
+          "command_all": "RUN [\"CMD\",\"[ccsemgrep]\"]",
+          "system_commands": [
+            "[\"CMD\",\"[ccsemgrep]\"]"
+          ],
+          "comment": "buildkit.dockerfile.v0"
+        },
+        {
+          "type": "RUN",
+          "time": "2022-09-30T10:31:19Z",
+          "is_nop": false,
+          "is_exec_form": true,
+          "local_image_exists": false,
+          "layer_index": 0,
+          "size": 0,
+          "command_snippet": "RUN [\"ARG\",\"BUILD_DATE\"]",
+          "command_all": "RUN [\"ARG\",\"BUILD_DATE\"]",
+          "system_commands": [
+            "[\"ARG\",\"BUILD_DATE\"]"
+          ],
+          "comment": "buildkit.dockerfile.v0"
+        },
+        {
+          "type": "RUN",
+          "time": "2022-09-30T10:31:19Z",
+          "is_nop": false,
+          "is_exec_form": true,
+          "local_image_exists": false,
+          "layer_index": 0,
+          "size": 0,
+          "command_snippet": "RUN [\"ARG\",\"REVISION\"]",
+          "command_all": "RUN [\"ARG\",\"REVISION\"]",
+          "system_commands": [
+            "[\"ARG\",\"REVISION\"]"
+          ],
+          "comment": "buildkit.dockerfile.v0"
+        },
+        {
+          "type": "RUN",
+          "time": "2022-09-30T10:31:19Z",
+          "is_nop": false,
+          "is_exec_form": true,
+          "local_image_exists": false,
+          "layer_index": 0,
+          "size": 0,
+          "command_snippet": "RUN [\"ARG\",\"VERSION\"]",
+          "command_all": "RUN [\"ARG\",\"VERSION\"]",
+          "system_commands": [
+            "[\"ARG\",\"VERSION\"]"
+          ],
+          "comment": "buildkit.dockerfile.v0"
+        },
+        {
+          "type": "RUN",
+          "time": "2022-09-30T10:31:19Z",
+          "is_nop": false,
+          "is_exec_form": true,
+          "local_image_exists": false,
+          "layer_index": 0,
+          "size": 0,
+          "command_snippet": "RUN [\"LABEL\",\"maintainer=Megabyte\",\"Labs\",\"<...",
+          "command_all": "RUN [\"LABEL\",\"maintainer=Megabyte\",\"Labs\",\"<help@megabyte.space>\"]",
+          "system_commands": [
+            "[\"LABEL\",\"maintainer=Megabyte\",\"Labs\",\"<help@megabyte.space>\"]"
+          ],
+          "comment": "buildkit.dockerfile.v0"
+        },
+        {
+          "type": "RUN",
+          "time": "2022-09-30T10:31:19Z",
+          "is_nop": false,
+          "is_exec_form": true,
+          "local_image_exists": false,
+          "layer_index": 0,
+          "size": 0,
+          "command_snippet": "RUN [\"LABEL\",\"org.opencontainers.image.autho...",
+          "command_all": "RUN [\"LABEL\",\"org.opencontainers.image.authors=Brian\",\"Zalewski\",\"<brian@megabyte.space>\"]",
+          "system_commands": [
+            "[\"LABEL\",\"org.opencontainers.image.authors=Brian\",\"Zalewski\",\"<brian@megabyte.space>\"]"
+          ],
+          "comment": "buildkit.dockerfile.v0"
+        },
+        {
+          "type": "RUN",
+          "time": "2022-09-30T10:31:19Z",
+          "is_nop": false,
+          "is_exec_form": true,
+          "local_image_exists": false,
+          "layer_index": 0,
+          "size": 0,
+          "command_snippet": "RUN [\"LABEL\",\"org.opencontainers.image.creat...",
+          "command_all": "RUN [\"LABEL\",\"org.opencontainers.image.created=2022-09-30T01:15:43-04:00\"]",
+          "system_commands": [
+            "[\"LABEL\",\"org.opencontainers.image.created=2022-09-30T01:15:43-04:00\"]"
+          ],
+          "comment": "buildkit.dockerfile.v0"
+        },
+        {
+          "type": "RUN",
+          "time": "2022-09-30T10:31:19Z",
+          "is_nop": false,
+          "is_exec_form": true,
+          "local_image_exists": false,
+          "layer_index": 0,
+          "size": 0,
+          "command_snippet": "RUN [\"LABEL\",\"org.opencontainers.image.descr...",
+          "command_all": "RUN [\"LABEL\",\"org.opencontainers.image.description=A\",\"Semgrep\",\"slim\",\"container\",\"and\",\"a\",\"CodeClimate\",\"engine\",\"container\",\"for\",\"GitLab\",\"CI\"]",
+          "system_commands": [
+            "[\"LABEL\",\"org.opencontainers.image.description=A\",\"Semgrep\",\"slim\",\"container\",\"and\",\"a\",\"CodeClimate\",\"engine\",\"container\",\"for\",\"GitLab\",\"CI\"]"
+          ],
+          "comment": "buildkit.dockerfile.v0"
+        },
+        {
+          "type": "RUN",
+          "time": "2022-09-30T10:31:19Z",
+          "is_nop": false,
+          "is_exec_form": true,
+          "local_image_exists": false,
+          "layer_index": 0,
+          "size": 0,
+          "command_snippet": "RUN [\"LABEL\",\"org.opencontainers.image.docum...",
+          "command_all": "RUN [\"LABEL\",\"org.opencontainers.image.documentation=https://github.com/megabyte-labs/codeclimate-semgrep/blob/master/README.md\"]",
+          "system_commands": [
+            "[\"LABEL\",\"org.opencontainers.image.documentation=https://github.com/megabyte-labs/codeclimate-semgrep/blob/master/README.md\"]"
+          ],
+          "comment": "buildkit.dockerfile.v0"
+        },
+        {
+          "type": "RUN",
+          "time": "2022-09-30T10:31:19Z",
+          "is_nop": false,
+          "is_exec_form": true,
+          "local_image_exists": false,
+          "layer_index": 0,
+          "size": 0,
+          "command_snippet": "RUN [\"LABEL\",\"org.opencontainers.image.licen...",
+          "command_all": "RUN [\"LABEL\",\"org.opencontainers.image.licenses=MIT\"]",
+          "system_commands": [
+            "[\"LABEL\",\"org.opencontainers.image.licenses=MIT\"]"
+          ],
+          "comment": "buildkit.dockerfile.v0"
+        },
+        {
+          "type": "RUN",
+          "time": "2022-09-30T10:31:19Z",
+          "is_nop": false,
+          "is_exec_form": true,
+          "local_image_exists": false,
+          "layer_index": 0,
+          "size": 0,
+          "command_snippet": "RUN [\"LABEL\",\"org.opencontainers.image.revis...",
+          "command_all": "RUN [\"LABEL\",\"org.opencontainers.image.revision=cc22569bdf2c61979b22470ccf8d6f2bfb4b4f8a\"]",
+          "system_commands": [
+            "[\"LABEL\",\"org.opencontainers.image.revision=cc22569bdf2c61979b22470ccf8d6f2bfb4b4f8a\"]"
+          ],
+          "comment": "buildkit.dockerfile.v0"
+        },
+        {
+          "type": "RUN",
+          "time": "2022-09-30T10:31:19Z",
+          "is_nop": false,
+          "is_exec_form": true,
+          "local_image_exists": false,
+          "layer_index": 0,
+          "size": 0,
+          "command_snippet": "RUN [\"LABEL\",\"org.opencontainers.image.sourc...",
+          "command_all": "RUN [\"LABEL\",\"org.opencontainers.image.source=https://github.com/megabyte-labs/codeclimate-semgrep.git\"]",
+          "system_commands": [
+            "[\"LABEL\",\"org.opencontainers.image.source=https://github.com/megabyte-labs/codeclimate-semgrep.git\"]"
+          ],
+          "comment": "buildkit.dockerfile.v0"
+        },
+        {
+          "type": "RUN",
+          "time": "2022-09-30T10:31:19Z",
+          "is_nop": false,
+          "is_exec_form": true,
+          "local_image_exists": false,
+          "layer_index": 0,
+          "size": 0,
+          "command_snippet": "RUN [\"LABEL\",\"org.opencontainers.image.url=h...",
+          "command_all": "RUN [\"LABEL\",\"org.opencontainers.image.url=https://megabyte.space\"]",
+          "system_commands": [
+            "[\"LABEL\",\"org.opencontainers.image.url=https://megabyte.space\"]"
+          ],
+          "comment": "buildkit.dockerfile.v0"
+        },
+        {
+          "type": "RUN",
+          "time": "2022-09-30T10:31:19Z",
+          "is_nop": false,
+          "is_exec_form": true,
+          "local_image_exists": false,
+          "layer_index": 0,
+          "size": 0,
+          "command_snippet": "RUN [\"LABEL\",\"org.opencontainers.image.vendo...",
+          "command_all": "RUN [\"LABEL\",\"org.opencontainers.image.vendor=Megabyte\",\"Labs\"]",
+          "system_commands": [
+            "[\"LABEL\",\"org.opencontainers.image.vendor=Megabyte\",\"Labs\"]"
+          ],
+          "comment": "buildkit.dockerfile.v0"
+        },
+        {
+          "type": "RUN",
+          "time": "2022-09-30T10:31:19Z",
+          "is_nop": false,
+          "is_exec_form": true,
+          "local_image_exists": false,
+          "layer_index": 0,
+          "size": 0,
+          "command_snippet": "RUN [\"LABEL\",\"org.opencontainers.image.versi...",
+          "command_all": "RUN [\"LABEL\",\"org.opencontainers.image.version=\"]",
+          "system_commands": [
+            "[\"LABEL\",\"org.opencontainers.image.version=\"]"
+          ],
+          "comment": "buildkit.dockerfile.v0"
+        },
+        {
+          "type": "RUN",
+          "time": "2022-09-30T10:31:19Z",
+          "is_last_instruction": true,
+          "is_nop": false,
+          "is_exec_form": true,
+          "local_image_exists": true,
+          "layer_index": 0,
+          "size": 0,
+          "command_snippet": "RUN [\"LABEL\",\"space.megabyte.type=codeclimat...",
+          "command_all": "RUN [\"LABEL\",\"space.megabyte.type=codeclimate\"]",
+          "system_commands": [
+            "[\"LABEL\",\"space.megabyte.type=codeclimate\"]"
+          ],
+          "comment": "buildkit.dockerfile.v0",
+          "raw_tags": [
+            "codeclimate/codeclimate-semgrep:latest",
+            "megabytelabs/semgrep:latest-codeclimate"
+          ]
+        }
+      ]
+    }
+  ]
+}

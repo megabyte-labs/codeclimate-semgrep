@@ -4,11 +4,11 @@ include:
   - remote: https://gitlab.com/megabyte-labs/gitlab-ci/-/raw/master/publish/semantic-release.gitlab-ci.yml
 integration:standalone:
   image:
-    name: megabytelabs/ansible-lint:slim
+    name: megabytelabs/semgrep:slim
     entrypoint: ['']
   script:
-    - ansible-lint --version
+    - semgrep --version
 integration:codeclimate:
-  image: megabytelabs/codeclimate:slim
+  image: megabytelabs/semgrep:slim
   script:
     - task lint:codeclimate

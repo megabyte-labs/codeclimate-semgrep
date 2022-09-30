@@ -1,0 +1,24 @@
+---
+schemaVersion: '2.0.0'
+
+commandTests:
+  - name: 'Test semgrep --help'
+    command: 'semgrep'
+    args: ['--help']
+    expectedOutput: ['.*If no subcommand is passed*']
+  - name: 'test command'
+    command: 'sh'
+    args:
+      - -c
+      - codeclimate-semgrep
+    expectedOutput: ['.*"comments".*']
+
+metadataTest:
+  labels:
+    - key: 'maintainer'
+      value: 'Megabyte Labs <help@megabyte.space>'
+    - key: 'space.megabyte.type'
+      value: 'codeclimate'
+  volumes: ['/code']
+  workdir: '/code'
+  user: 'app'

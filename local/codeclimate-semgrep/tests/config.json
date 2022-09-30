@@ -1,8 +1,0 @@
-{
-  "include_paths": ["."],
-  "runs": [
-    {
-      "configs": ["sentinel-body.yml", "sentinel-definition.yml"]
-    }
-  ]
-}

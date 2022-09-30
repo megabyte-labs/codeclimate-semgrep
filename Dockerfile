@@ -1,4 +1,4 @@
-FROM ubuntu:20.04 AS base
+FROM ubuntu:20.04 AS base-codeclimate
 
 WORKDIR /work
 
@@ -9,9 +9,11 @@ RUN apt-get update \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/*
 
-FROM base AS development
+FROM base-codeclimate AS development
 
 ARG DEBIAN_FRONTEND=noninteractive
+
+COPY local/engine.json engine.json
 
 RUN apt-get update \
     && apt-get install -y --no-install-recommends \
@@ -27,7 +29,9 @@ RUN apt-get update \
     poetry>=0.12 \
     && poetry config virtualenvs.in-project true \
     && npm install -g \
-    quicktype@15.x
+    quicktype@15.x \
+    && VERSION="$(semgrep --version 2>&1 | sed -n 3p)" \
+    && jq --arg version "$VERSION" '.version = $version' > /engine.json < ./engine.json
 
 FROM development AS build
 
@@ -35,18 +39,18 @@ COPY local/codeclimate-semgrep .
 
 RUN make build-package
 
-FROM base AS codeclimate
+FROM base-codeclimate AS codeclimate
 
-COPY local/engine.json /engine.json
+COPY local/test-config.json /test-config.json
+COPY local/sentinel-body.yml /sentinel-body.yml
+COPY --from=build /engine.json /engine.json
 COPY --from=build /work/dist /tmp/dist
 
 RUN pip3 install /tmp/dist/*.whl \
-    && VERSION="$(semgrep --version 2>&1 | sed -n 3p)" \
-    && jq --arg version "$VERSION" '.version = $version' > /engine.json < ./engine.json \
-    && rm -rf /tmp/dist /root/.cache/pip \
-    && useradd -u 9000 -M app
+    && rm -rf /tmp/dist /root/.cache/pip
+    # && useradd -u 9000 -M app
 
-USER app
+# USER app
 
 VOLUME /code
 WORKDIR /code
@@ -70,7 +74,7 @@ LABEL org.opencontainers.image.vendor="Megabyte Labs"
 LABEL org.opencontainers.image.version=$VERSION
 LABEL space.megabyte.type="codeclimate"
 
-FROM base AS semgrep
+FROM base-codeclimate AS semgrep
 
 USER root
 
