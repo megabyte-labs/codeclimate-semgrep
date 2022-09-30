@@ -1,61 +1,37 @@
-FROM ubuntu:20.04 AS base-codeclimate
+FROM alpine:3 AS codeclimate
+
+ENV container docker
 
 WORKDIR /work
 
-RUN apt-get update \
-    && apt-get install -y --no-install-recommends \
-    'python3=3.8.*' \
-    'python3-pip=20.*' \
-    && apt-get clean \
-    && rm -rf /var/lib/apt/lists/*
+COPY local/engine.json ./engine.json
+COPY local/codeclimate-semgrep /usr/local/bin/
 
-FROM base-codeclimate AS development
+SHELL ["/bin/ash", "-eo", "pipefail", "-c"]
+RUN adduser --uid 9000 --gecos "" --disabled-password app \
+  && apk --no-cache add --virtual build-deps \
+  python3-dev~=3 \
+  py3-pip~=20 \
+  && apk --no-cache add --virtual cc-deps \
+  bash~=5 \
+  jq~=1 \
+  && apk --no-cache add \
+  python3~=3 \
+  && pip3 install --no-cache-dir \
+  "semgrep==*" \
+  && find /usr/lib/ -name '__pycache__' -print0 | xargs -0 -n1 rm -rf \
+  && find /usr/lib/ -name '*.pyc' -print0 | xargs -0 -n1 rm -rf \
+  && VERSION="$(semgrep --version | 2>&1 | sed -n 3p)" \
+  && jq --arg version "$VERSION" '.version = $version' > /engine.json < ./engine.json \
+  && rm ./engine.json \
+  && apk del build-deps
 
-ARG DEBIAN_FRONTEND=noninteractive
-
-COPY local/engine.json engine.json
-
-RUN apt-get update \
-    && apt-get install -y --no-install-recommends \
-    curl=7.* \
-    jq=1.* \
-    nodejs=10.* \
-    npm=6.* \
-    git=1:2.* \
-    build-essential=* \
-    && apt-get clean \
-    && rm -rf /var/lib/apt/lists/* \
-    && pip3 install \
-    poetry>=0.12 \
-    && poetry config virtualenvs.in-project true \
-    && npm install -g \
-    quicktype@15.x \
-    && VERSION="$(semgrep --version 2>&1 | sed -n 3p)" \
-    && jq --arg version "$VERSION" '.version = $version' > /engine.json < ./engine.json
-
-FROM development AS build
-
-COPY local/codeclimate-semgrep .
-
-RUN make build-package
-
-FROM base-codeclimate AS codeclimate
-
-COPY local/test-config.json /test-config.json
-COPY local/sentinel-body.yml /sentinel-body.yml
-COPY --from=build /engine.json /engine.json
-COPY --from=build /work/dist /tmp/dist
-
-RUN pip3 install /tmp/dist/*.whl \
-    && rm -rf /tmp/dist /root/.cache/pip
-    # && useradd -u 9000 -M app
-
-# USER app
+USER app
 
 VOLUME /code
 WORKDIR /code
 
-CMD ["ccsemgrep"]
+CMD ["codeclimate-semgrep"]
 
 ARG BUILD_DATE
 ARG REVISION
@@ -64,21 +40,24 @@ ARG VERSION
 LABEL maintainer="Megabyte Labs <help@megabyte.space>"
 LABEL org.opencontainers.image.authors="Brian Zalewski <brian@megabyte.space>"
 LABEL org.opencontainers.image.created=$BUILD_DATE
-LABEL org.opencontainers.image.description="A Semgrep slim container and a CodeClimate engine container for GitLab CI"
-LABEL org.opencontainers.image.documentation="https://github.com/megabyte-labs/codeclimate-semgrep/blob/master/README.md"
+LABEL org.opencontainers.image.description="An Ansible Lint slim container and a CodeClimate engine container for GitLab CI"
+LABEL org.opencontainers.image.documentation="https://github.com/megabyte-labs/codeclimate-ansible-lint/blob/master/README.md"
 LABEL org.opencontainers.image.licenses="MIT"
 LABEL org.opencontainers.image.revision=$REVISION
-LABEL org.opencontainers.image.source="https://github.com/megabyte-labs/codeclimate-semgrep.git"
+LABEL org.opencontainers.image.source="https://github.com/megabyte-labs/codeclimate-ansible-lint.git"
 LABEL org.opencontainers.image.url="https://megabyte.space"
 LABEL org.opencontainers.image.vendor="Megabyte Labs"
 LABEL org.opencontainers.image.version=$VERSION
 LABEL space.megabyte.type="codeclimate"
 
-FROM base-codeclimate AS semgrep
+FROM codeclimate AS semgrep
+
+WORKDIR /work
 
 USER root
 
-RUN python3 -m pip install semgrep
+RUN apk del cc-deps \
+  && rm /engine.json /usr/local/bin/codeclimate-semgrep
 
 ENTRYPOINT ["semgrep"]
 CMD ["--version"]
