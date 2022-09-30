@@ -1,5 +1,7 @@
 FROM ubuntu:20.04 AS base
 
+WORKDIR /work
+
 RUN apt-get update \
     && apt-get install -y --no-install-recommends \
     'python3=3.8.*' \
@@ -8,42 +10,70 @@ RUN apt-get update \
     && rm -rf /var/lib/apt/lists/*
 
 FROM base AS development
+
 ARG DEBIAN_FRONTEND=noninteractive
 
 RUN apt-get update \
     && apt-get install -y --no-install-recommends \
-    'curl=7.*' \
-    'nodejs=10.*' \
-    'npm=6.*' \
-    'git=1:2.*' \
-    'build-essential=*' \
+    curl=7.* \
+    nodejs=10.* \
+    npm=6.* \
+    git=1:2.* \
+    build-essential=* \
     && apt-get clean \
-    && rm -rf /var/lib/apt/lists/*
-
-RUN curl -L -o /usr/local/bin/hadolint https://github.com/hadolint/hadolint/releases/download/v1.19.0/hadolint-Linux-x86_64 && chmod +x /usr/local/bin/hadolint
-
-RUN pip3 install 'poetry>=0.12' && poetry config virtualenvs.in-project true
-
-RUN npm install -g quicktype@"15.x"
-
-WORKDIR /workspaces/codeclimate-semgrep
+    && rm -rf /var/lib/apt/lists/* \
+    && pip3 install \
+    poetry>=0.12 \
+    && poetry config virtualenvs.in-project true \
+    && npm install -g \
+    quicktype@15.x
 
 FROM development AS build
 
-COPY . .
+COPY local/codeclimate-semgrep .
+
 RUN make build-package
 
-FROM base AS release
+FROM base AS codeclimate
 
-COPY engine.json /engine.json
-COPY --from=build /workspaces/codeclimate-semgrep/dist /tmp/dist
+COPY local/engine.json /engine.json
+COPY --from=build /work/dist /tmp/dist
 
-RUN pip3 install /tmp/dist/*.whl && rm -rf /tmp/dist /root/.cache/pip
+RUN pip3 install /tmp/dist/*.whl \
+    && rm -rf /tmp/dist /root/.cache/pip \
+    && useradd -u 9000 -M app
 
-RUN useradd -u 9000 -M app
 USER app
 
 VOLUME /code
 WORKDIR /code
 
 CMD ["ccsemgrep"]
+
+ARG BUILD_DATE
+ARG REVISION
+ARG VERSION
+
+LABEL maintainer="Megabyte Labs <help@megabyte.space>"
+LABEL org.opencontainers.image.authors="Brian Zalewski <brian@megabyte.space>"
+LABEL org.opencontainers.image.created=$BUILD_DATE
+LABEL org.opencontainers.image.description="An Ansible Lint slim container and a CodeClimate engine container for GitLab CI"
+LABEL org.opencontainers.image.documentation="https://github.com/megabyte-labs/codeclimate-ansible-lint/blob/master/README.md"
+LABEL org.opencontainers.image.licenses="MIT"
+LABEL org.opencontainers.image.revision=$REVISION
+LABEL org.opencontainers.image.source="https://github.com/megabyte-labs/codeclimate-ansible-lint.git"
+LABEL org.opencontainers.image.url="https://megabyte.space"
+LABEL org.opencontainers.image.vendor="Megabyte Labs"
+LABEL org.opencontainers.image.version=$VERSION
+LABEL space.megabyte.type="codeclimate"
+
+FROM base AS semgrep
+
+USER root
+
+RUN python3 -m pip install semgrep
+
+ENTRYPOINT ["semgrep"]
+CMD ["--version"]
+
+LABEL space.megabyte.type="linter"
