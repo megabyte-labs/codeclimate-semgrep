@@ -21,13 +21,13 @@
   },
   "source_image": {
     "identity": {
-      "id": "sha256:97cb1d906ac813c379051c8f88738d5a3bb5de3c1c97ab667880bf263e3c9501",
+      "id": "sha256:7ccad531653c6374ba3c89e18f78ba18bf3798553c5b5a0e34948960c7d2dc1f",
       "tags": ["latest", "latest-codeclimate"],
       "names": ["codeclimate/codeclimate-semgrep:latest", "megabytelabs/semgrep:latest-codeclimate"]
     },
     "size": 244678436,
     "size_human": "245 MB",
-    "create_time": "2022-10-01T05:15:05Z",
+    "create_time": "2022-10-01T05:38:38Z",
     "docker_version": "",
     "architecture": "amd64",
     "user": "app",
@@ -36,15 +36,15 @@
     "labels": {
       "maintainer": "Megabyte Labs <help@megabyte.space>",
       "org.opencontainers.image.authors": "Brian Zalewski <brian@megabyte.space>",
-      "org.opencontainers.image.created": "2022-10-01T01:11:15-04:00",
+      "org.opencontainers.image.created": "2022-10-01T01:28:23-04:00",
       "org.opencontainers.image.description": "A Semgrep slim container and a CodeClimate engine container for GitLab CI",
       "org.opencontainers.image.documentation": "https://github.com/megabyte-labs/codeclimate-semgrep/blob/master/README.md",
       "org.opencontainers.image.licenses": "MIT",
-      "org.opencontainers.image.revision": "699415e8af9e2387b8fcc1db31b0318143481f1b",
+      "org.opencontainers.image.revision": "ff717715b0e62a6079c893158c3fe1bcbccccffd",
       "org.opencontainers.image.source": "https://github.com/megabyte-labs/codeclimate-semgrep.git",
       "org.opencontainers.image.url": "https://megabyte.space",
       "org.opencontainers.image.vendor": "Megabyte Labs",
-      "org.opencontainers.image.version": "",
+      "org.opencontainers.image.version": "1.0.1",
       "space.megabyte.type": "codeclimate"
     },
     "env_vars": [
@@ -56,24 +56,24 @@
       "exe_path": ""
     }
   },
-  "minified_image_size": 146923451,
+  "minified_image_size": 146923449,
   "minified_image_size_human": "147 MB",
   "minified_image": "megabytelabs/semgrep:slim-codeclimate",
   "minified_image_has_data": true,
-  "minified_by": 1.6653463714243957,
-  "artifact_location": "/tmp/docker-slim-state/.docker-slim-state/images/97cb1d906ac813c379051c8f88738d5a3bb5de3c1c97ab667880bf263e3c9501/artifacts",
+  "minified_by": 1.6653463940939748,
+  "artifact_location": "/tmp/docker-slim-state/.docker-slim-state/images/7ccad531653c6374ba3c89e18f78ba18bf3798553c5b5a0e34948960c7d2dc1f/artifacts",
   "container_report_name": "creport.json",
   "seccomp_profile_name": "codeclimate-codeclimate-semgrep-seccomp.json",
   "apparmor_profile_name": "codeclimate-codeclimate-semgrep-apparmor-profile",
   "image_stack": [
     {
       "is_top_image": true,
-      "id": "sha256:97cb1d906ac813c379051c8f88738d5a3bb5de3c1c97ab667880bf263e3c9501",
+      "id": "sha256:7ccad531653c6374ba3c89e18f78ba18bf3798553c5b5a0e34948960c7d2dc1f",
       "full_name": "codeclimate/codeclimate-semgrep:latest",
       "repo_name": "codeclimate/codeclimate-semgrep",
       "version_tag": "latest",
       "raw_tags": ["codeclimate/codeclimate-semgrep:latest", "megabytelabs/semgrep:latest-codeclimate"],
-      "create_time": "2022-10-01T05:15:05Z",
+      "create_time": "2022-10-01T05:38:38Z",
       "new_size": 244678436,
       "new_size_human": "245 MB",
       "instructions": [
@@ -238,8 +238,8 @@
           "layer_index": 0,
           "size": 0,
           "command_snippet": "RUN [\"LABEL\",\"org.opencontainers.image.creat...",
-          "command_all": "RUN [\"LABEL\",\"org.opencontainers.image.created=2022-10-01T01:11:15-04:00\"]",
-          "system_commands": ["[\"LABEL\",\"org.opencontainers.image.created=2022-10-01T01:11:15-04:00\"]"],
+          "command_all": "RUN [\"LABEL\",\"org.opencontainers.image.created=2022-10-01T01:28:23-04:00\"]",
+          "system_commands": ["[\"LABEL\",\"org.opencontainers.image.created=2022-10-01T01:28:23-04:00\"]"],
           "comment": "buildkit.dockerfile.v0"
         },
         {
@@ -294,9 +294,9 @@
           "layer_index": 0,
           "size": 0,
           "command_snippet": "RUN [\"LABEL\",\"org.opencontainers.image.revis...",
-          "command_all": "RUN [\"LABEL\",\"org.opencontainers.image.revision=699415e8af9e2387b8fcc1db31b0318143481f1b\"]",
+          "command_all": "RUN [\"LABEL\",\"org.opencontainers.image.revision=ff717715b0e62a6079c893158c3fe1bcbccccffd\"]",
           "system_commands": [
-            "[\"LABEL\",\"org.opencontainers.image.revision=699415e8af9e2387b8fcc1db31b0318143481f1b\"]"
+            "[\"LABEL\",\"org.opencontainers.image.revision=ff717715b0e62a6079c893158c3fe1bcbccccffd\"]"
           ],
           "comment": "buildkit.dockerfile.v0"
         },
@@ -350,8 +350,8 @@
           "layer_index": 0,
           "size": 0,
           "command_snippet": "RUN [\"LABEL\",\"org.opencontainers.image.versi...",
-          "command_all": "RUN [\"LABEL\",\"org.opencontainers.image.version=\"]",
-          "system_commands": ["[\"LABEL\",\"org.opencontainers.image.version=\"]"],
+          "command_all": "RUN [\"LABEL\",\"org.opencontainers.image.version=1.0.1\"]",
+          "system_commands": ["[\"LABEL\",\"org.opencontainers.image.version=1.0.1\"]"],
           "comment": "buildkit.dockerfile.v0"
         },
         {
@@ -369,7 +369,7 @@
         },
         {
           "type": "RUN",
-          "time": "2022-10-01T05:15:04Z",
+          "time": "2022-10-01T05:38:37Z",
           "is_nop": false,
           "is_exec_form": true,
           "local_image_exists": false,
@@ -385,7 +385,7 @@
         },
         {
           "type": "RUN",
-          "time": "2022-10-01T05:15:04Z",
+          "time": "2022-10-01T05:38:37Z",
           "is_nop": false,
           "is_exec_form": true,
           "local_image_exists": false,
@@ -399,7 +399,7 @@
         },
         {
           "type": "RUN",
-          "time": "2022-10-01T05:15:04Z",
+          "time": "2022-10-01T05:38:37Z",
           "is_nop": false,
           "is_exec_form": true,
           "local_image_exists": false,
@@ -413,7 +413,7 @@
         },
         {
           "type": "RUN",
-          "time": "2022-10-01T05:15:04Z",
+          "time": "2022-10-01T05:38:37Z",
           "is_nop": false,
           "is_exec_form": true,
           "local_image_exists": false,
@@ -427,7 +427,7 @@
         },
         {
           "type": "RUN",
-          "time": "2022-10-01T05:15:05Z",
+          "time": "2022-10-01T05:38:38Z",
           "is_nop": false,
           "is_exec_form": true,
           "local_image_exists": false,
@@ -446,7 +446,7 @@
         },
         {
           "type": "RUN",
-          "time": "2022-10-01T05:15:05Z",
+          "time": "2022-10-01T05:38:38Z",
           "is_nop": false,
           "is_exec_form": true,
           "local_image_exists": false,
@@ -459,7 +459,7 @@
         },
         {
           "type": "RUN",
-          "time": "2022-10-01T05:15:05Z",
+          "time": "2022-10-01T05:38:38Z",
           "is_nop": false,
           "is_exec_form": true,
           "local_image_exists": false,
@@ -472,7 +472,7 @@
         },
         {
           "type": "RUN",
-          "time": "2022-10-01T05:15:05Z",
+          "time": "2022-10-01T05:38:38Z",
           "is_nop": false,
           "is_exec_form": true,
           "local_image_exists": false,
@@ -485,7 +485,7 @@
         },
         {
           "type": "RUN",
-          "time": "2022-10-01T05:15:05Z",
+          "time": "2022-10-01T05:38:38Z",
           "is_last_instruction": true,
           "is_nop": false,
           "is_exec_form": true,
