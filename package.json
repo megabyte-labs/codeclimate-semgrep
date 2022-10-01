@@ -1,7 +1,7 @@
 {
   "private": false,
   "name": "@megabytelabs/codeclimate-semgrep",
-  "version": "",
+  "version": "1.0.0",
   "description": "A Semgrep slim container and a CodeClimate engine container for GitLab CI",
   "license": "MIT",
   "author": "Brian Zalewski <brian@megabyte.space> (https://megabyte.space)",
@@ -79,7 +79,7 @@
     "node": ">=14.18.0"
   },
   "publishConfig": {
-    "@gitlab:registry": "https://gitlab.com/api/v4/projects//packages/npm/",
+    "@gitlab:registry": "https://gitlab.com/api/v4/projects/32219209/packages/npm/",
     "@megabyte:registry": "https://gitlab.com/api/v4/projects//packages/npm/",
     "access": "public",
     "registry": "https://registry.npmjs.org/",
@@ -115,6 +115,9 @@
       "codeclimate": "38M",
       "semgrep": "37M"
     },
+    "github_id": "R_kgDOIGsz1w",
+    "gitlab_group_id": "14556970",
+    "gitlab_project_id": "32219209",
     "group": "docker",
     "name": "Semgrep",
     "overview": "This project is the home of a [Semgrep](https://semgrep.dev/) [CodeClimate](https://codeclimate.com/) engine. It was built to integrate Semgrep results into the GitLab merge request web UI. This project builds multiple types of containers. It builds a CodeClimate engine and a standalone linter. Both of these types are available as slim builds.",
@@ -125,10 +128,7 @@
     "slug": "semgrep",
     "subgroup": "codeclimate",
     "title": "Semgrep CodeClimate Engine",
-    "versionCommand": "docker run -it megabytelabs/semgrep:latest --version 2>&1 | sed -n 3p",
-    "github_id": "R_kgDOIGsz1w",
-    "gitlab_project_id": "32219209",
-    "gitlab_group_id": "14556970"
+    "versionCommand": "run -it megabytelabs/semgrep:latest --version"
   },
   "changelog": {
     "displayTypes": [
