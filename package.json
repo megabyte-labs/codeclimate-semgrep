@@ -125,7 +125,10 @@
     "slug": "semgrep",
     "subgroup": "codeclimate",
     "title": "Semgrep CodeClimate Engine",
-    "versionCommand": "docker run -it megabytelabs/semgrep:latest --version 2>&1 | sed -n 3p"
+    "versionCommand": "docker run -it megabytelabs/semgrep:latest --version 2>&1 | sed -n 3p",
+    "github_id": "R_kgDOIGsz1w",
+    "gitlab_project_id": "32219209",
+    "gitlab_group_id": "14556970"
   },
   "changelog": {
     "displayTypes": [
