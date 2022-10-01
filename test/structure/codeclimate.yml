@@ -11,7 +11,7 @@ commandTests:
     args:
       - -c
       - codeclimate-semgrep
-    expectedOutput: ['.*"comments".*']
+    expectedError: ['.*CI scan completed successfully*']
 
 metadataTest:
   labels:

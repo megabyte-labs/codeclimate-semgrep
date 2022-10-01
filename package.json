@@ -103,15 +103,16 @@
     "description": "A Semgrep slim container and a CodeClimate engine container for GitLab CI",
     "dockerBaseTag": "semgrep",
     "dockerLatestSize": {
-      "codeclimate": "93M",
-      "semgrep": "98M"
+      "codeclimate": "71M",
+      "semgrep": "171M"
     },
+    "dockerOutputCommand": "--config auto",
     "dockerSlimCommand": {
-      "codeclimate": "--http-probe=false --exec 'codeclimate-semgrep -c /test-config.json'",
+      "codeclimate": "--http-probe=false --exec 'bash --version && jq --version && semgrep --version && semgrep --config auto' --preserve-path /home/app",
       "semgrep": "--http-probe=false --exec 'semgrep --version && semgrep --config auto'"
     },
     "dockerSlimSize": {
-      "codeclimate": "58M",
+      "codeclimate": "38M",
       "semgrep": "37M"
     },
     "group": "docker",

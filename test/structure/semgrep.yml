@@ -1,11 +1,11 @@
 ---
-schemaVersion: "2.0.0"
+schemaVersion: '2.0.0'
 
 commandTests:
-  - name: "Test semgrep --help"
-    command: "semgrep"
-    args: ["--help"]
-    expectedOutput: ["If no subcommand is passed*"]
+  - name: 'Test semgrep --help'
+    command: 'semgrep'
+    args: ['--help']
+    expectedOutput: ['If no subcommand is passed*']
 
 metadataTest:
   labels:
@@ -13,6 +13,5 @@ metadataTest:
       value: 'Megabyte Labs <help@megabyte.space>'
     - key: 'space.megabyte.type'
       value: 'linter'
-  entrypoint: ["semgrep"]
-  workdir: "/work"
-  user: "root"
+  workdir: '/work'
+  user: 'root'

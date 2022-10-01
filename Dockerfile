@@ -1,37 +1,18 @@
-FROM alpine:3 AS codeclimate
+FROM ubuntu:20.04 AS codeclimate-base
 
+ENV DEBIAN_FRONTEND noninteractive
 ENV container docker
 
 WORKDIR /work
 
-COPY local/engine.json ./engine.json
-COPY local/codeclimate-semgrep /usr/local/bin/
-
-SHELL ["/bin/ash", "-eo", "pipefail", "-c"]
-RUN adduser --uid 9000 --gecos "" --disabled-password app \
-  && apk --no-cache add --virtual build-deps \
-  python3-dev~=3 \
-  py3-pip~=20 \
-  && apk --no-cache add --virtual cc-deps \
-  bash~=5 \
-  jq~=1 \
-  && apk --no-cache add \
-  python3~=3 \
-  && pip3 install --no-cache-dir \
-  "semgrep==*" \
-  && find /usr/lib/ -name '__pycache__' -print0 | xargs -0 -n1 rm -rf \
-  && find /usr/lib/ -name '*.pyc' -print0 | xargs -0 -n1 rm -rf \
-  && VERSION="$(semgrep --version | 2>&1 | sed -n 3p)" \
-  && jq --arg version "$VERSION" '.version = $version' > /engine.json < ./engine.json \
-  && rm ./engine.json \
-  && apk del build-deps
-
-USER app
-
-VOLUME /code
-WORKDIR /code
-
-CMD ["codeclimate-semgrep"]
+RUN useradd -u 9000 -M app \
+    && apt-get update \
+    && apt-get install -y --no-install-recommends \
+    jq=1.* \
+    python3=3.8.* \
+    python3-pip=20.* \
+    && apt-get clean \
+    && rm -rf /var/lib/apt/lists/*
 
 ARG BUILD_DATE
 ARG REVISION
@@ -50,14 +31,53 @@ LABEL org.opencontainers.image.vendor="Megabyte Labs"
 LABEL org.opencontainers.image.version=$VERSION
 LABEL space.megabyte.type="codeclimate"
 
-FROM codeclimate AS semgrep
+FROM codeclimate-base AS development
+
+COPY local/engine.json ./engine.json
+
+RUN apt-get update \
+  && apt-get install -y --no-install-recommends \
+  curl=7.* \
+  build-essential=* \
+  && apt-get clean \
+  && rm -rf /var/lib/apt/lists/* \
+  && pip3 install --no-cache-dir \
+  semgrep==0.* \
+  && find /usr/lib/ -name '__pycache__' -print0 | xargs -0 -n1 rm -rf \
+  && find /usr/lib/ -name '*.pyc' -print0 | xargs -0 -n1 rm -rf \
+  && VERSION="$(semgrep --version | 2>&1 | sed -n 3p)" \
+  && jq --arg version "$VERSION" '.version = $version' > /engine.json < ./engine.json \
+  && rm ./engine.json
+
+FROM codeclimate-base AS codeclimate
+
+COPY --from=development /usr/local/lib/python3.8/dist-packages /usr/local/lib/python3.8/dist-packages
+COPY --from=development /usr/local/bin/semgrep /usr/local/bin/semgrep
+COPY --from=development /engine.json /engine.json
+COPY local/codeclimate-semgrep /usr/local/bin/
+
+RUN chmod +x /usr/local/bin/codeclimate-semgrep \
+  && mkdir -p /home/app \
+  && chown -Rf app:app /home/app \
+  && rm -rf /root/.semgrep
+
+USER app
+
+VOLUME /code
+WORKDIR /code
+
+CMD ["codeclimate-semgrep"]
+
+FROM development AS semgrep
+
+COPY --from=development /usr/local/lib/python3.8/dist-packages /usr/local/lib/python3.8/dist-packages
+COPY --from=development /usr/local/bin/semgrep /usr/local/bin/semgrep
 
 WORKDIR /work
 
 USER root
 
-RUN apk del cc-deps \
-  && rm /engine.json /usr/local/bin/codeclimate-semgrep
+RUN rm -rf /root/.semgrep
 
 ENTRYPOINT ["semgrep"]
 CMD ["--version"]
