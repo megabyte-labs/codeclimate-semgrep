@@ -22,5 +22,4 @@ if jq -r '.exclude_paths[]' test-config.json &>/dev/null; then
   done < <(jq -r '.exclude_paths[]' test-config.json)
 fi
 
-echo "$SEMGREP_COMMAND"
 $(echo "$SEMGREP_COMMAND") | jq --compact-output '.results[] | .description = .extra.message | .fingerprint = .extra.fingerprint | .severity = .extra.severity | .location.path = .path | .location.positions.begin.line = .start.line | .location.positions.begin.column = .start.col | .location.positions.end.line = .end.line | .location.positions.end.column = .end.col | .remediation_points = 50000 | .content.body = "[Source](" + .extra.metadata.source + "]" | .check_name = .check_id'
