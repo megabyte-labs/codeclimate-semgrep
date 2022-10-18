@@ -128,7 +128,7 @@
     "slug": "semgrep",
     "subgroup": "codeclimate",
     "title": "Semgrep CodeClimate Engine",
-    "versionCommand": "run -it megabytelabs/semgrep:latest --version"
+    "versionCommand": "docker run -it megabytelabs/semgrep:latest --version"
   },
   "changelog": {
     "displayTypes": [
