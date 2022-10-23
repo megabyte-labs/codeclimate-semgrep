@@ -1,7 +1,7 @@
 {
   "private": false,
   "name": "@megabytelabs/codeclimate-semgrep",
-  "version": "1.0.1",
+  "version": "0.118.0",
   "description": "A Semgrep slim container and a CodeClimate engine container for GitLab CI",
   "license": "MIT",
   "author": "Brian Zalewski <brian@megabyte.space> (https://megabyte.space)",
@@ -103,16 +103,16 @@
     "description": "A Semgrep slim container and a CodeClimate engine container for GitLab CI",
     "dockerBaseTag": "semgrep",
     "dockerLatestSize": {
-      "codeclimate": "71M",
-      "semgrep": "171M"
+      "codeclimate": "74M",
+      "semgrep": "145M"
     },
     "dockerOutputCommand": "--config auto",
     "dockerSlimCommand": {
-      "codeclimate": "--http-probe=false --exec 'bash --version && jq --version && semgrep --version && semgrep --config auto' --preserve-path /home/app",
-      "semgrep": "--http-probe=false --exec 'semgrep --version && semgrep --config auto'"
+      "codeclimate": "--http-probe=false --exec 'curl --version && bash --version && jq --version && semgrep --version && semgrep ci --config auto' --preserve-path /home/app --include-path /etc/ssl --include-path /usr/share/ca-certificates",
+      "semgrep": "--http-probe=false --exec 'semgrep --version && semgrep ci --config auto'"
     },
     "dockerSlimSize": {
-      "codeclimate": "38M",
+      "codeclimate": "43M",
       "semgrep": "37M"
     },
     "github_id": "R_kgDOIGsz1w",

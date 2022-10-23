@@ -8,6 +8,7 @@ WORKDIR /work
 RUN useradd -u 9000 -M app \
     && apt-get update \
     && apt-get install -y --no-install-recommends \
+    curl=7.* \
     jq=1.* \
     python3=3.8.* \
     python3-pip=20.* \
@@ -37,6 +38,7 @@ COPY local/engine.json ./engine.json
 
 RUN apt-get update \
   && apt-get install -y --no-install-recommends \
+  ca-certificates=* \
   curl=7.* \
   build-essential=* \
   && apt-get clean \
@@ -69,9 +71,6 @@ WORKDIR /code
 CMD ["codeclimate-semgrep"]
 
 FROM development AS semgrep
-
-COPY --from=development /usr/local/lib/python3.8/dist-packages /usr/local/lib/python3.8/dist-packages
-COPY --from=development /usr/local/bin/semgrep /usr/local/bin/semgrep
 
 WORKDIR /work
 

@@ -1,27 +1,27 @@
 #!/bin/bash
 
-SEMGREP_COMMAND="semgrep ci --json"
+SEMGREP_COMMAND="semgrep ci --suppress-errors --use-git-ignore --json"
 
-if jq -r '.configs[]' test-config.json &>/dev/null; then
+if jq -r '.configs[]' /config.json &>/dev/null; then
   while read CONFIG; do
     SEMGREP_COMMAND="$SEMGREP_COMMAND --config $CONFIG"
-  done < <(jq -r '.configs[]' test-config.json)
+  done < <(jq -r '.configs[]' /config.json)
 else
   SEMGREP_COMMAND="$SEMGREP_COMMAND --config auto"
 fi
 
-if jq -r '.include_paths[]' test-config.json &>/dev/null; then
+if jq -r '.include_paths[]' /config.json &>/dev/null; then
   while read INCLUDE_PATH; do
     SEMGREP_COMMAND="$SEMGREP_COMMAND --include $INCLUDE_PATH"
-  done < <(jq -r '.include_paths[]' test-config.json)
+  done < <(jq -r '.include_paths[]' /config.json)
 fi
 
-if jq -r '.exclude_paths[]' test-config.json &>/dev/null; then
+if jq -r '.exclude_paths[]' /config.json &>/dev/null; then
   while read EXCLUDE_PATH; do
     SEMGREP_COMMAND="$SEMGREP_COMMAND --exclude $EXCLUDE_PATH"
-  done < <(jq -r '.exclude_paths[]' test-config.json)
+  done < <(jq -r '.exclude_paths[]' /config.json)
 fi
 
-$(echo "$SEMGREP_COMMAND") | jq -c '.results[] | .description = .extra.message | .fingerprint = .extra.fingerprint | .severity = .extra.severity | .location.path = .path | .location.positions.begin.line = .start.line | .location.positions.begin.column = .start.col | .location.positions.end.line = .end.line | .location.positions.end.column = .end.col | .remediation_points = 50000 | .content.body = "[Source](" + .extra.metadata.source + "]" | .check_name = .check_id' | while read INPUT; do
+$(echo "$SEMGREP_COMMAND") | jq -c '.results[] | .description = .extra.message | .fingerprint = .extra.fingerprint | .location.path = .path | .location.positions.begin.line = .start.line | .location.positions.begin.column = .start.col | .location.positions.end.line = .end.line | .location.positions.end.column = .end.col | .remediation_points = 50000 | .content.body = "[Source](" + .extra.metadata.source + "]" | .check_name = .check_id | .categories = ["Bug Risk"] | .type = "issue"' | while read INPUT; do
   printf "$INPUT\0"
 done
